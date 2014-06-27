@@ -5,7 +5,8 @@
    "databases":{
       "office_radar":{
          "bucket":"walrus:/opt/sync_gateway/data",
-         "sync":`function(doc) {channel(doc.channels);}`
+         "sync":`function(doc) {channel(doc.channels);}`,
+	 "users": { "GUEST": {"disabled": false, "all_channels": ["*"], "admin_channels": ["*"]} }
       }
    }
 }
