@@ -29,6 +29,8 @@
 		158FBC50195E182500A218EE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC4F195E182500A218EE /* SystemConfiguration.framework */; };
 		158FBC52195E183700A218EE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC51195E183700A218EE /* libsqlite3.dylib */; };
 		158FBC54195E184000A218EE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC53195E184000A218EE /* libz.dylib */; };
+		158FBC57195E1FA100A218EE /* RDBeaconManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FBC56195E1FA100A218EE /* RDBeaconManager.m */; };
+		158FBC5B195E248200A218EE /* RDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FBC5A195E248200A218EE /* RDConstants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,10 @@
 		158FBC4F195E182500A218EE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		158FBC51195E183700A218EE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		158FBC53195E184000A218EE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		158FBC55195E1FA100A218EE /* RDBeaconManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDBeaconManager.h; sourceTree = "<group>"; };
+		158FBC56195E1FA100A218EE /* RDBeaconManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDBeaconManager.m; sourceTree = "<group>"; };
+		158FBC59195E248200A218EE /* RDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDConstants.h; sourceTree = "<group>"; };
+		158FBC5A195E248200A218EE /* RDConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDConstants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,12 +149,16 @@
 			children = (
 				158FBC1D195E0BB000A218EE /* RDAppDelegate.h */,
 				158FBC1E195E0BB000A218EE /* RDAppDelegate.m */,
+				158FBC59195E248200A218EE /* RDConstants.h */,
+				158FBC5A195E248200A218EE /* RDConstants.m */,
 				158FBC20195E0BB000A218EE /* Main_iPhone.storyboard */,
 				158FBC23195E0BB000A218EE /* Main_iPad.storyboard */,
 				158FBC26195E0BB000A218EE /* RDMasterViewController.h */,
 				158FBC27195E0BB000A218EE /* RDMasterViewController.m */,
 				158FBC29195E0BB000A218EE /* RDDetailViewController.h */,
 				158FBC2A195E0BB000A218EE /* RDDetailViewController.m */,
+				158FBC55195E1FA100A218EE /* RDBeaconManager.h */,
+				158FBC56195E1FA100A218EE /* RDBeaconManager.m */,
 				158FBC2C195E0BB000A218EE /* Images.xcassets */,
 				158FBC15195E0BB000A218EE /* Supporting Files */,
 			);
@@ -283,6 +293,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158FBC57195E1FA100A218EE /* RDBeaconManager.m in Sources */,
+				158FBC5B195E248200A218EE /* RDConstants.m in Sources */,
 				158FBC1F195E0BB000A218EE /* RDAppDelegate.m in Sources */,
 				158FBC1B195E0BB000A218EE /* main.m in Sources */,
 				158FBC28195E0BB000A218EE /* RDMasterViewController.m in Sources */,

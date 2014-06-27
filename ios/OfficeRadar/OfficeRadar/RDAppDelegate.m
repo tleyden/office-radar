@@ -1,7 +1,7 @@
 
 #import "RDAppDelegate.h"
-
-#define kSyncURL @"http://162.222.178.49:4984/office_radar"
+#import "RDBeaconManager.h"
+#import "RDConstants.h"
 
 @implementation RDAppDelegate
 
@@ -13,7 +13,10 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
-    [self initCouchbaseLite];
+    [self initCouchbaseLiteDatabase];
+    [self initOfficeRadarBeaconManager];
+    [self initCouchbaseLiteReplications];
+    
     return YES;
 }
 							
@@ -44,7 +47,7 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-- (void)initCouchbaseLite {
+- (void)initCouchbaseLiteDatabase {
 
     NSError *error;
     self.manager = [CBLManager sharedInstance];
@@ -54,18 +57,17 @@
         NSLog (@"Cannot create/retrieve database. Error message: %@", error.localizedDescription);
     }
     
-    [[NSNotificationCenter defaultCenter] addObserverForName: kCBLDatabaseChangeNotification
-                                                      object: [self database]
-                                                       queue: nil
-                                                  usingBlock: ^(NSNotification *n) {
-                                                      NSArray* changes = n.userInfo[@"changes"];
-                                                      for (int i=0; i<changes.count; i++) {
-                                                          CBLDatabaseChange* change = changes[i];
-                                                          NSLog(@"Document '%@' changed.", change.documentID);
-                                                      }
-                                                  }
-     ];
+}
+
+- (void)initOfficeRadarBeaconManager {
     
+    self.beaconManager = [[RDBeaconManager alloc] init];
+    [[self beaconManager] setDatabase:[self database]];
+    [[self beaconManager] observeDatabase];
+
+}
+
+- (void)initCouchbaseLiteReplications {
     NSURL *syncUrl = [NSURL URLWithString:kSyncURL];
     CBLReplication *pullReplication = [[self database] createPullReplication:syncUrl];
     CBLReplication *pushReplication = [[self database] createPushReplication:syncUrl];
@@ -81,8 +83,10 @@
                                              selector:@selector(pushReplicationProgress:)
                                                  name:kCBLReplicationChangeNotification
                                                object:pushReplication];
-    
 }
+
+
+
 
 -(void)pullReplicationProgress:(NSNotification *)notification {
     NSLog(@"pullReplicationProgress");

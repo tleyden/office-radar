@@ -1,3 +1,3 @@
 [
-{"type":"beacon", "organization":"couchbase", "location":"sf-office", "description":"Trauns Macbook Virtual Beacon"}
+{"type":"beacon","uuid":"08D4A950-80F0-4D42-A14B-D53E063516E6", "major":61001, "minor":13001, "organization":"couchbase", "location":"sf-office", "description":"Trauns Macbook Virtual Beacon"}
 ]
