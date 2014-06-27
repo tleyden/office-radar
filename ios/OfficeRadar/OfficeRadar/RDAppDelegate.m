@@ -1,6 +1,8 @@
 
 #import "RDAppDelegate.h"
 
+#define kSyncURL @"http://162.222.178.49:4984/office_radar"
+
 @implementation RDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -11,6 +13,7 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+    [self initCouchbaseLite];
     return YES;
 }
 							
@@ -40,5 +43,57 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+- (void)initCouchbaseLite {
+
+    NSError *error;
+    self.manager = [CBLManager sharedInstance];
+
+    self.database = [[self manager] databaseNamed:@"office_radar" error:&error];
+    if (![self database]) {
+        NSLog (@"Cannot create/retrieve database. Error message: %@", error.localizedDescription);
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName: kCBLDatabaseChangeNotification
+                                                      object: [self database]
+                                                       queue: nil
+                                                  usingBlock: ^(NSNotification *n) {
+                                                      NSArray* changes = n.userInfo[@"changes"];
+                                                      for (int i=0; i<changes.count; i++) {
+                                                          CBLDatabaseChange* change = changes[i];
+                                                          NSLog(@"Document '%@' changed.", change.documentID);
+                                                      }
+                                                  }
+     ];
+    
+    NSURL *syncUrl = [NSURL URLWithString:kSyncURL];
+    CBLReplication *pullReplication = [[self database] createPullReplication:syncUrl];
+    CBLReplication *pushReplication = [[self database] createPushReplication:syncUrl];
+    [pullReplication start];
+    [pushReplication start];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pullReplicationProgress:)
+                                                 name:kCBLReplicationChangeNotification
+                                               object:pullReplication];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(pushReplicationProgress:)
+                                                 name:kCBLReplicationChangeNotification
+                                               object:pushReplication];
+    
+}
+
+-(void)pullReplicationProgress:(NSNotification *)notification {
+    NSLog(@"pullReplicationProgress");
+}
+
+-(void)pushReplicationProgress:(NSNotification *)notification {
+    NSLog(@"pushReplicationProgress");
+}
+
+
+
+
 
 @end

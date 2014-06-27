@@ -24,6 +24,11 @@
 		158FBC3E195E0BB000A218EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 158FBC3C195E0BB000A218EE /* InfoPlist.strings */; };
 		158FBC40195E0BB000A218EE /* OfficeRadarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FBC3F195E0BB000A218EE /* OfficeRadarTests.m */; };
 		158FBC4A195E123500A218EE /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC49195E123500A218EE /* CouchbaseLite.framework */; };
+		158FBC4C195E181100A218EE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC4B195E181100A218EE /* CFNetwork.framework */; };
+		158FBC4E195E181C00A218EE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC4D195E181C00A218EE /* Security.framework */; };
+		158FBC50195E182500A218EE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC4F195E182500A218EE /* SystemConfiguration.framework */; };
+		158FBC52195E183700A218EE /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC51195E183700A218EE /* libsqlite3.dylib */; };
+		158FBC54195E184000A218EE /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC53195E184000A218EE /* libz.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +65,11 @@
 		158FBC3D195E0BB000A218EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		158FBC3F195E0BB000A218EE /* OfficeRadarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfficeRadarTests.m; sourceTree = "<group>"; };
 		158FBC49195E123500A218EE /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		158FBC4B195E181100A218EE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		158FBC4D195E181C00A218EE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		158FBC4F195E182500A218EE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		158FBC51195E183700A218EE /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		158FBC53195E184000A218EE /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +77,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				158FBC54195E184000A218EE /* libz.dylib in Frameworks */,
+				158FBC52195E183700A218EE /* libsqlite3.dylib in Frameworks */,
+				158FBC50195E182500A218EE /* SystemConfiguration.framework in Frameworks */,
+				158FBC4E195E181C00A218EE /* Security.framework in Frameworks */,
+				158FBC4C195E181100A218EE /* CFNetwork.framework in Frameworks */,
 				158FBC11195E0BB000A218EE /* CoreGraphics.framework in Frameworks */,
 				158FBC13195E0BB000A218EE /* UIKit.framework in Frameworks */,
 				158FBC4A195E123500A218EE /* CouchbaseLite.framework in Frameworks */,
@@ -109,6 +124,11 @@
 		158FBC0D195E0BB000A218EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				158FBC53195E184000A218EE /* libz.dylib */,
+				158FBC51195E183700A218EE /* libsqlite3.dylib */,
+				158FBC4F195E182500A218EE /* SystemConfiguration.framework */,
+				158FBC4D195E181C00A218EE /* Security.framework */,
+				158FBC4B195E181100A218EE /* CFNetwork.framework */,
 				158FBC49195E123500A218EE /* CouchbaseLite.framework */,
 				158FBC0E195E0BB000A218EE /* Foundation.framework */,
 				158FBC10195E0BB000A218EE /* CoreGraphics.framework */,
@@ -408,6 +428,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OfficeRadar/OfficeRadar-Prefix.pch";
 				INFOPLIST_FILE = "OfficeRadar/OfficeRadar-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -425,6 +446,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OfficeRadar/OfficeRadar-Prefix.pch";
 				INFOPLIST_FILE = "OfficeRadar/OfficeRadar-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
