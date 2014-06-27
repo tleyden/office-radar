@@ -23,6 +23,7 @@
 		158FBC36195E0BB000A218EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC12195E0BB000A218EE /* UIKit.framework */; };
 		158FBC3E195E0BB000A218EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 158FBC3C195E0BB000A218EE /* InfoPlist.strings */; };
 		158FBC40195E0BB000A218EE /* OfficeRadarTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 158FBC3F195E0BB000A218EE /* OfficeRadarTests.m */; };
+		158FBC4A195E123500A218EE /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC49195E123500A218EE /* CouchbaseLite.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		158FBC3B195E0BB000A218EE /* OfficeRadarTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "OfficeRadarTests-Info.plist"; sourceTree = "<group>"; };
 		158FBC3D195E0BB000A218EE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		158FBC3F195E0BB000A218EE /* OfficeRadarTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OfficeRadarTests.m; sourceTree = "<group>"; };
+		158FBC49195E123500A218EE /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +69,7 @@
 			files = (
 				158FBC11195E0BB000A218EE /* CoreGraphics.framework in Frameworks */,
 				158FBC13195E0BB000A218EE /* UIKit.framework in Frameworks */,
+				158FBC4A195E123500A218EE /* CouchbaseLite.framework in Frameworks */,
 				158FBC0F195E0BB000A218EE /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,6 +109,7 @@
 		158FBC0D195E0BB000A218EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				158FBC49195E123500A218EE /* CouchbaseLite.framework */,
 				158FBC0E195E0BB000A218EE /* Foundation.framework */,
 				158FBC10195E0BB000A218EE /* CoreGraphics.framework */,
 				158FBC12195E0BB000A218EE /* UIKit.framework */,
@@ -397,6 +401,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OfficeRadar/OfficeRadar-Prefix.pch";
 				INFOPLIST_FILE = "OfficeRadar/OfficeRadar-Info.plist";
@@ -410,6 +418,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "OfficeRadar/OfficeRadar-Prefix.pch";
 				INFOPLIST_FILE = "OfficeRadar/OfficeRadar-Info.plist";
@@ -477,6 +489,7 @@
 				158FBC45195E0BB000A218EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		158FBC46195E0BB000A218EE /* Build configuration list for PBXNativeTarget "OfficeRadarTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +498,7 @@
 				158FBC48195E0BB000A218EE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
