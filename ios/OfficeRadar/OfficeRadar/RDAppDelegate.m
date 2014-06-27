@@ -19,7 +19,20 @@
     
     return YES;
 }
-							
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OfficeRadar"
+                                                        message:notification.alertBody
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -61,8 +74,7 @@
 
 - (void)initOfficeRadarBeaconManager {
     
-    self.beaconManager = [[RDBeaconManager alloc] init];
-    [[self beaconManager] setDatabase:[self database]];
+    self.beaconManager = [[RDBeaconManager alloc] initWithDatabase:[self database]];
     [[self beaconManager] observeDatabase];
 
 }
