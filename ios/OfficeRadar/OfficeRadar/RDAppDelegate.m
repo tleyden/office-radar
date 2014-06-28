@@ -83,6 +83,10 @@
     NSURL *syncUrl = [NSURL URLWithString:kSyncURL];
     CBLReplication *pullReplication = [[self database] createPullReplication:syncUrl];
     CBLReplication *pushReplication = [[self database] createPushReplication:syncUrl];
+    
+    [pullReplication setContinuous:YES];
+    [pushReplication setContinuous:YES];
+    
     [pullReplication start];
     [pushReplication start];
     
