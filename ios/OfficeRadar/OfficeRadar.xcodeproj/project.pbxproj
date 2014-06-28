@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */; };
+		156C5D03195F2B78009D0C58 /* RDBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5D02195F2B78009D0C58 /* RDBeacon.m */; };
 		158FBC0F195E0BB000A218EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC0E195E0BB000A218EE /* Foundation.framework */; };
 		158FBC11195E0BB000A218EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC10195E0BB000A218EE /* CoreGraphics.framework */; };
 		158FBC13195E0BB000A218EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC12195E0BB000A218EE /* UIKit.framework */; };
@@ -47,6 +49,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		156C5CFE195F28CA009D0C58 /* RDGeofenceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDGeofenceEvent.h; sourceTree = "<group>"; };
+		156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDGeofenceEvent.m; sourceTree = "<group>"; };
+		156C5D01195F2B78009D0C58 /* RDBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDBeacon.h; sourceTree = "<group>"; };
+		156C5D02195F2B78009D0C58 /* RDBeacon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDBeacon.m; sourceTree = "<group>"; };
 		158FBC0B195E0BB000A218EE /* OfficeRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OfficeRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		158FBC0E195E0BB000A218EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		158FBC10195E0BB000A218EE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -171,6 +177,10 @@
 				158FBC2A195E0BB000A218EE /* RDDetailViewController.m */,
 				158FBC55195E1FA100A218EE /* RDBeaconManager.h */,
 				158FBC56195E1FA100A218EE /* RDBeaconManager.m */,
+				156C5CFE195F28CA009D0C58 /* RDGeofenceEvent.h */,
+				156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */,
+				156C5D01195F2B78009D0C58 /* RDBeacon.h */,
+				156C5D02195F2B78009D0C58 /* RDBeacon.m */,
 				158FBC2C195E0BB000A218EE /* Images.xcassets */,
 				158FBC15195E0BB000A218EE /* Supporting Files */,
 			);
@@ -307,6 +317,8 @@
 			files = (
 				158FBC57195E1FA100A218EE /* RDBeaconManager.m in Sources */,
 				158FBC5B195E248200A218EE /* RDConstants.m in Sources */,
+				156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */,
+				156C5D03195F2B78009D0C58 /* RDBeacon.m in Sources */,
 				158FBC1F195E0BB000A218EE /* RDAppDelegate.m in Sources */,
 				158FBC1B195E0BB000A218EE /* main.m in Sources */,
 				158FBC28195E0BB000A218EE /* RDMasterViewController.m in Sources */,

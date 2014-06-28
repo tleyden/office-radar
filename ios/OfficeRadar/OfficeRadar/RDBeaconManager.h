@@ -10,5 +10,6 @@
 
 - (RDBeaconManager *)initWithDatabase:(CBLDatabase *)database;
 - (void) observeDatabase;
+- (void) createDbViews;
 
 @end

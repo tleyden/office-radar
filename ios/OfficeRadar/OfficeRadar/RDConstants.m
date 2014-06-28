@@ -10,5 +10,11 @@ NSString *const kDocTypeBeacon = @"beacon";
 NSString *const kFieldUuid = @"uuid";
 NSString *const kFieldMajor = @"major";
 NSString *const kFieldMinor = @"minor";
+NSString *const kActionEntry = @"entry";
+NSString *const kActionExit = @"exit";
+NSString *const kGeofenceEventDocType = @"geofence_event";
+NSString *const kBeaconDocType = @"beacon";
+NSString *const kFieldId = @"_id";
+NSString *const kViewBeacons = @"beacons";
 
 @end

@@ -2,6 +2,9 @@
 #import <Foundation/Foundation.h>
 #import "RDBeaconManager.h"
 #import "RDConstants.h"
+#import "RDBeacon.h"
+#import "RDGeofenceEvent.h"
+#import <CouchbaseLite/CouchbaseLite.h>
 
 @implementation RDBeaconManager
 
@@ -27,6 +30,24 @@
                                                       }
                                                   }
      ];
+    
+}
+
+- (void) createDbViews {
+    
+    CBLView* view = [[self database] viewNamed: @"beacons"];
+    [view setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
+        NSString *docType = (NSString *) doc[kDocType];
+        if ([docType isEqualToString:kDocTypeBeacon]) {
+            NSString *uuid = (NSString *) doc[kFieldUuid];
+            NSNumber *major = (NSNumber *) doc[kFieldMajor];
+            NSNumber *minor = (NSNumber *) doc[kFieldMinor];
+            NSArray *key = [NSArray arrayWithObjects:uuid, major, minor, nil];
+            emit(key, doc[@"_id"]);
+        }
+        
+    } version:@"1"];
+
     
 }
 
@@ -63,7 +84,25 @@
     
 }
 
+- (void)saveGeofenceForRegion:(ESTBeaconRegion *)region action:(NSString *)action {
+    
+    RDBeacon *beacon = [RDBeacon beaconForRegion:region inDatabase:[self database]];
+    
+    RDGeofenceEvent *geofenceEvent = [[RDGeofenceEvent alloc] initInDatabase:[self database]
+                                                                  withBeacon:beacon
+                                                                      userID:@"tleyden@couchbase.com"
+                                                                      action:action];
 
+    
+    NSError *error;
+    BOOL saved = [geofenceEvent save:&error];
+    
+    if (!saved) {
+        UILocalNotification *notification = [UILocalNotification new];
+        notification.alertBody = @"OfficeRadar: failed to save geofence event";
+        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    }
+}
 
 #pragma mark - ESTBeaconManager delegate
 
@@ -73,6 +112,9 @@
     notification.alertBody = @"OfficeRadar: enter";
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    
+    [self saveGeofenceForRegion:region action:kActionEntry];
+    
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didExitRegion:(ESTBeaconRegion *)region
@@ -81,7 +123,13 @@
     notification.alertBody = @"OfficeRadar: exit";
     
     [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    
+    [self saveGeofenceForRegion:region action:kActionExit];
+
+    
 }
+
+
 
 
 @end
