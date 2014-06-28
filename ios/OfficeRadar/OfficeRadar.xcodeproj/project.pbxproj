@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1551193D195F8B06007C9A54 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1551193C195F8B06007C9A54 /* FacebookSDK.framework */; };
 		156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */; };
 		156C5D03195F2B78009D0C58 /* RDBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5D02195F2B78009D0C58 /* RDBeacon.m */; };
 		158FBC0F195E0BB000A218EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC0E195E0BB000A218EE /* Foundation.framework */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1551193C195F8B06007C9A54 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		156C5CFE195F28CA009D0C58 /* RDGeofenceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDGeofenceEvent.h; sourceTree = "<group>"; };
 		156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDGeofenceEvent.m; sourceTree = "<group>"; };
 		156C5D01195F2B78009D0C58 /* RDBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDBeacon.h; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				158FBC52195E183700A218EE /* libsqlite3.dylib in Frameworks */,
 				158FBC4E195E181C00A218EE /* Security.framework in Frameworks */,
 				158FBC4C195E181100A218EE /* CFNetwork.framework in Frameworks */,
+				1551193D195F8B06007C9A54 /* FacebookSDK.framework in Frameworks */,
 				158FBC11195E0BB000A218EE /* CoreGraphics.framework in Frameworks */,
 				158FBC13195E0BB000A218EE /* UIKit.framework in Frameworks */,
 				158FBC4A195E123500A218EE /* CouchbaseLite.framework in Frameworks */,
@@ -145,6 +148,7 @@
 		158FBC0D195E0BB000A218EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1551193C195F8B06007C9A54 /* FacebookSDK.framework */,
 				158FBC60195E28CC00A218EE /* CoreLocation.framework */,
 				158FBC5E195E28C500A218EE /* CoreBluetooth.framework */,
 				158FBC5C195E28BB00A218EE /* libEstimoteSDK.a */,
