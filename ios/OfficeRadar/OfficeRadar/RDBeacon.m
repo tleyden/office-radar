@@ -30,17 +30,20 @@
     query.endKey = queryKey;
     
     // run query to find document
+    CBLDocument *beaconDocument;
     NSError *error;
     CBLQueryEnumerator* result = [query run: &error];
+    
     for (CBLQueryRow* row in result) {
         NSLog(@"Found beacon for key: %@ beacon id: %@", row.key, row.value);
+        beaconDocument = [database documentWithID:row.value];
+        break;
     }
     
     // get a model for the document
+    RDBeacon *beacon = [RDBeacon modelForDocument:beaconDocument];
     
-    // return model
-    
-    return nil;
+    return beacon;
     
 }
 

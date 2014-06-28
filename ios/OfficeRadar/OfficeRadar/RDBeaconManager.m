@@ -81,6 +81,12 @@
     
     [self.estimoteBeaconManager startMonitoringForRegion:beaconRegion];
     
+    RDBeacon *beacon = [RDBeacon beaconForRegion:beaconRegion inDatabase:[self database]];
+    NSLog(@"beacon: %@", beacon);
+    
+    [self saveGeofenceForRegion:beaconRegion action:kActionEntry];
+
+    
     
 }
 
@@ -90,12 +96,15 @@
     
     RDGeofenceEvent *geofenceEvent = [[RDGeofenceEvent alloc] initInDatabase:[self database]
                                                                   withBeacon:beacon
-                                                                      userID:@"tleyden@couchbase.com"
+                                                                      userID:@"unknown@couchbase.com"
                                                                       action:action];
 
     
     NSError *error;
     BOOL saved = [geofenceEvent save:&error];
+    
+    CBLDocument *document = [geofenceEvent document];
+    NSLog(@"document properties: %@", [document properties]);
     
     if (!saved) {
         UILocalNotification *notification = [UILocalNotification new];
