@@ -81,12 +81,10 @@
     
     [self.estimoteBeaconManager startMonitoringForRegion:beaconRegion];
     
+    // TODO: remove this .. just experimenting
     RDBeacon *beacon = [RDBeacon beaconForRegion:beaconRegion inDatabase:[self database]];
     NSLog(@"beacon: %@", beacon);
-    
     [self saveGeofenceForRegion:beaconRegion action:kActionEntry];
-
-    
     
 }
 
