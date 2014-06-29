@@ -17,6 +17,8 @@ extern NSString *const kGeofenceEventDocType;
 extern NSString *const kBeaconDocType;
 extern NSString *const kFieldId;
 extern NSString *const kViewBeacons;
+extern NSString *const kDatabaseName;
+extern NSString *const kLocalDocUserId;
 
 
 

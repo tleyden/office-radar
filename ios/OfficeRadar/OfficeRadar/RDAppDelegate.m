@@ -80,7 +80,7 @@
     NSError *error;
     self.manager = [CBLManager sharedInstance];
 
-    self.database = [[self manager] databaseNamed:@"office_radar" error:&error];
+    self.database = [[self manager] databaseNamed:kDatabaseName error:&error];
     if (![self database]) {
         NSLog (@"Cannot create/retrieve database. Error message: %@", error.localizedDescription);
     }

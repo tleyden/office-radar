@@ -16,5 +16,8 @@ NSString *const kGeofenceEventDocType = @"geofence_event";
 NSString *const kBeaconDocType = @"beacon";
 NSString *const kFieldId = @"_id";
 NSString *const kViewBeacons = @"beacons";
+NSString *const kDatabaseName = @"office_radar";
+NSString *const kLocalDocUserId = @"user_id";
+
 
 @end

@@ -1,5 +1,7 @@
 
 #import "RDLoginViewController.h"
+#import <CouchbaseLite/CouchbaseLite.h>
+#import "RDConstants.h"
 
 @interface RDLoginViewController ()
 
@@ -33,7 +35,21 @@
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
     NSLog(@"loginViewFetchedUserInfo");
+    
+    NSError *error;
+
+    // get database
+    CBLDatabase *database = [[CBLManager sharedInstance] databaseNamed:kDatabaseName error:&error];
+    [self showAlertIfError:error withMessage:@"Unable to get database"];
+    
+    // save local doc with fb user id
+    NSDictionary *localDoc = @{kLocalDocUserId: [user objectID]};
+    [database putLocalDocument:localDoc withID:kLocalDocUserId error:&error];
+    [self showAlertIfError:error withMessage:@"Unable to save local doc"];
+    
+
 }
+
 
 // Logged-in user experience
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
@@ -46,7 +62,29 @@
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
     NSLog(@"loginViewShowingLoggedOutUser");
     [[self nextButton] setEnabled:NO];
+    
+    NSError *error;
 
+    // get database
+    CBLDatabase *database = [[CBLManager sharedInstance] databaseNamed:kDatabaseName error:&error];
+    [self showAlertIfError:error withMessage:@"Unable to get database"];
+    
+    // delete local doc with fb user id
+    [database deleteLocalDocumentWithID:kLocalDocUserId error:&error];
+    [self showAlertIfError:error withMessage:@"Unable to delete local doc"];
+
+}
+
+
+- (void)showAlertIfError:(NSError *)error withMessage:(NSString *)message {
+    if (error != nil) {
+        [[[UIAlertView alloc] initWithTitle:@"Error"
+                                    message:message
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    }
+    
 }
 
 // Handle possible errors that can occur during login
