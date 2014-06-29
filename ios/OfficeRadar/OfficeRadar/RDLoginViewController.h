@@ -3,8 +3,8 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 
-@interface RDLoginViewController : UIViewController
+@interface RDLoginViewController : UIViewController <FBLoginViewDelegate>
 
-@property (readwrite) FBLoginView *fbLoginView;
+@property (strong, nonatomic) IBOutlet UIButton *nextButton;
 
 @end

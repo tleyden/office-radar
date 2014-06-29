@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="DXJ-Rn-DPa">
             <objects>
-                <viewController id="dnv-Ob-Pus" sceneMemberID="viewController">
+                <viewController id="dnv-Ob-Pus" customClass="RDLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="H1z-Jj-y9g"/>
                         <viewControllerLayoutGuide type="bottom" id="l4T-qx-fi8"/>
@@ -20,6 +20,9 @@
                                 <rect key="frame" x="26" y="196" width="274" height="138"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="delegate" destination="dnv-Ob-Pus" id="DfG-QA-o8n"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j9I-j0-tt9">
                                 <rect key="frame" x="136" y="404" width="32" height="30"/>
@@ -34,6 +37,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <outlet property="nextButton" destination="j9I-j0-tt9" id="rMr-bK-9VU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OwT-Ym-yw2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
