@@ -71,7 +71,8 @@
     
     // delete local doc with fb user id
     [database deleteLocalDocumentWithID:kLocalDocUserId error:&error];
-    [self showAlertIfError:error withMessage:@"Unable to delete local doc"];
+    // first time user uses app, will see this error.
+    // [self showAlertIfError:error withMessage:@"Unable to delete local doc"];
 
 }
 

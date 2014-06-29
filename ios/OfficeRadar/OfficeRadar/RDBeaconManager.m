@@ -81,11 +81,12 @@
     beaconRegion.notifyOnExit = YES;
     
     [self.estimoteBeaconManager startMonitoringForRegion:beaconRegion];
+    NSLog(@"Monitoring for beacon region: %@", beaconRegion);
     
     // TODO: remove this .. just experimenting
-    RDBeacon *beacon = [RDBeacon beaconForRegion:beaconRegion inDatabase:[self database]];
-    NSLog(@"beacon: %@", beacon);
-    [self saveGeofenceForRegion:beaconRegion action:kActionEntry];
+    // RDBeacon *beacon = [RDBeacon beaconForRegion:beaconRegion inDatabase:[self database]];
+    // NSLog(@"beacon: %@", beacon);
+    // [self saveGeofenceForRegion:beaconRegion action:kActionEntry];
     
 }
 
