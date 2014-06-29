@@ -75,7 +75,7 @@
 
 }
 
-
+// TODO: this method is duplicated, refactoring needed
 - (void)showAlertIfError:(NSError *)error withMessage:(NSString *)message {
     if (error != nil) {
         [[[UIAlertView alloc] initWithTitle:@"Error"

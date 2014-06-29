@@ -4,6 +4,7 @@
 #import "RDConstants.h"
 #import "RDBeacon.h"
 #import "RDGeofenceEvent.h"
+#import "RDUserHelper.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 
 @implementation RDBeaconManager
@@ -90,11 +91,18 @@
 
 - (void)saveGeofenceForRegion:(ESTBeaconRegion *)region action:(NSString *)action {
     
+    NSString *loggedInUserId = [[RDUserHelper sharedInstance] loggedInUserId];
+    
+    if (loggedInUserId == nil) {
+        NSLog(@"No logged in user, not saving geofence event");
+        return;
+    }
+    
     RDBeacon *beacon = [RDBeacon beaconForRegion:region inDatabase:[self database]];
     
     RDGeofenceEvent *geofenceEvent = [[RDGeofenceEvent alloc] initInDatabase:[self database]
                                                                   withBeacon:beacon
-                                                                      userID:@"unknown@couchbase.com"
+                                                                      userID:loggedInUserId
                                                                       action:action];
 
     

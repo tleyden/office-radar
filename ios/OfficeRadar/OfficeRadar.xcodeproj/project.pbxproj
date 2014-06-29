@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1551193D195F8B06007C9A54 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1551193C195F8B06007C9A54 /* FacebookSDK.framework */; };
 		15511940195F8E78007C9A54 /* RDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1551193F195F8E78007C9A54 /* RDLoginViewController.m */; };
+		15511943195F9AB0007C9A54 /* RDUserHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 15511942195F9AB0007C9A54 /* RDUserHelper.m */; };
 		156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */; };
 		156C5D03195F2B78009D0C58 /* RDBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5D02195F2B78009D0C58 /* RDBeacon.m */; };
 		158FBC0F195E0BB000A218EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC0E195E0BB000A218EE /* Foundation.framework */; };
@@ -54,6 +55,8 @@
 		1551193C195F8B06007C9A54 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
 		1551193E195F8E78007C9A54 /* RDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDLoginViewController.h; sourceTree = "<group>"; };
 		1551193F195F8E78007C9A54 /* RDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDLoginViewController.m; sourceTree = "<group>"; };
+		15511941195F9AB0007C9A54 /* RDUserHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDUserHelper.h; sourceTree = "<group>"; };
+		15511942195F9AB0007C9A54 /* RDUserHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDUserHelper.m; sourceTree = "<group>"; };
 		156C5CFE195F28CA009D0C58 /* RDGeofenceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDGeofenceEvent.h; sourceTree = "<group>"; };
 		156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDGeofenceEvent.m; sourceTree = "<group>"; };
 		156C5D01195F2B78009D0C58 /* RDBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDBeacon.h; sourceTree = "<group>"; };
@@ -190,6 +193,8 @@
 				156C5D02195F2B78009D0C58 /* RDBeacon.m */,
 				1551193E195F8E78007C9A54 /* RDLoginViewController.h */,
 				1551193F195F8E78007C9A54 /* RDLoginViewController.m */,
+				15511941195F9AB0007C9A54 /* RDUserHelper.h */,
+				15511942195F9AB0007C9A54 /* RDUserHelper.m */,
 				158FBC2C195E0BB000A218EE /* Images.xcassets */,
 				158FBC15195E0BB000A218EE /* Supporting Files */,
 			);
@@ -324,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15511943195F9AB0007C9A54 /* RDUserHelper.m in Sources */,
 				158FBC57195E1FA100A218EE /* RDBeaconManager.m in Sources */,
 				158FBC5B195E248200A218EE /* RDConstants.m in Sources */,
 				156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */,
