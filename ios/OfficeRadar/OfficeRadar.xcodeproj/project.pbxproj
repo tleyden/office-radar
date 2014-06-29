@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1551193D195F8B06007C9A54 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1551193C195F8B06007C9A54 /* FacebookSDK.framework */; };
+		15511940195F8E78007C9A54 /* RDLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1551193F195F8E78007C9A54 /* RDLoginViewController.m */; };
 		156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */; };
 		156C5D03195F2B78009D0C58 /* RDBeacon.m in Sources */ = {isa = PBXBuildFile; fileRef = 156C5D02195F2B78009D0C58 /* RDBeacon.m */; };
 		158FBC0F195E0BB000A218EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC0E195E0BB000A218EE /* Foundation.framework */; };
@@ -51,6 +52,8 @@
 
 /* Begin PBXFileReference section */
 		1551193C195F8B06007C9A54 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		1551193E195F8E78007C9A54 /* RDLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDLoginViewController.h; sourceTree = "<group>"; };
+		1551193F195F8E78007C9A54 /* RDLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDLoginViewController.m; sourceTree = "<group>"; };
 		156C5CFE195F28CA009D0C58 /* RDGeofenceEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDGeofenceEvent.h; sourceTree = "<group>"; };
 		156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDGeofenceEvent.m; sourceTree = "<group>"; };
 		156C5D01195F2B78009D0C58 /* RDBeacon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDBeacon.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				156C5CFF195F28CA009D0C58 /* RDGeofenceEvent.m */,
 				156C5D01195F2B78009D0C58 /* RDBeacon.h */,
 				156C5D02195F2B78009D0C58 /* RDBeacon.m */,
+				1551193E195F8E78007C9A54 /* RDLoginViewController.h */,
+				1551193F195F8E78007C9A54 /* RDLoginViewController.m */,
 				158FBC2C195E0BB000A218EE /* Images.xcassets */,
 				158FBC15195E0BB000A218EE /* Supporting Files */,
 			);
@@ -323,6 +328,7 @@
 				158FBC5B195E248200A218EE /* RDConstants.m in Sources */,
 				156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */,
 				156C5D03195F2B78009D0C58 /* RDBeacon.m in Sources */,
+				15511940195F8E78007C9A54 /* RDLoginViewController.m in Sources */,
 				158FBC1F195E0BB000A218EE /* RDAppDelegate.m in Sources */,
 				158FBC1B195E0BB000A218EE /* main.m in Sources */,
 				158FBC28195E0BB000A218EE /* RDMasterViewController.m in Sources */,

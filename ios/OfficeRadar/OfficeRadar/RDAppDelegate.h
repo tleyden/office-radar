@@ -3,7 +3,6 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "RDBeaconManager.h"
 
-
 @interface RDAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
