@@ -7,6 +7,7 @@
 #import "RDBeaconManager.h"
 #import "RDConstants.h"
 #import <CouchbaseLite/CouchbaseLite.h>
+#import "RDGeofenceEvent.h"
 
 @interface RDMasterViewController () {
     NSMutableArray *_objects;
@@ -81,6 +82,23 @@
     RDBeaconManager *beaconManager = [[RDBeaconManager alloc] initWithDatabase:[RDDatabaseHelper database]];
     [beaconManager saveGeofenceForBeacon:beacon action:kActionEntry];
     
+}
+
+#pragma mark - CBLUITableSource
+
+- (UITableViewCell *)couchTableSource:(CBLUITableSource*)source
+                cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    CBLDocument *document = [source documentAtIndexPath:indexPath];
+    RDGeofenceEvent *geofenceEvent = [RDGeofenceEvent modelForDocument:document];
+    
+    // cell.textLabel.text = geofenceEvent.profile.name;
+    // cell.textLabel.text = geofenceEvent.action;
+    cell.textLabel.text = geofenceEvent.beacon.location;
+    
+    return cell;
+
 }
 
 #pragma mark - Table View

@@ -4,7 +4,7 @@
 
 @class RDDetailViewController;
 
-@interface RDMasterViewController : UITableViewController
+@interface RDMasterViewController : UITableViewController <CBLUITableDelegate>
 
 @property (strong, nonatomic) RDDetailViewController *detailViewController;
 @property (strong, nonatomic) CBLUITableSource *tableSource;

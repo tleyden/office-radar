@@ -27,6 +27,15 @@
 /** The minor number of beacon.  See estimote docs for an explanation */
 @property (readwrite) NSNumber* minor;
 
+/** Description of beacon */
+@property (readwrite) NSString* description;
+
+/** Location of beacon, eg "sf-office" */
+@property (readwrite) NSString* location;
+
+/** Organization that owns office where beacon is placed, eg "Couchbase" */
+@property (readwrite) NSString* organization;
+
 /** initializer */
 - (instancetype) initInDatabase: (CBLDatabase*)database
                        withUuid: (NSString*)uuid
