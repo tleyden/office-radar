@@ -1,4 +1,4 @@
 [
-{"type":"beacon","uuid":"08D4A950-80F0-4D42-A14B-D53E063516E6", "major":61001, "minor":13001, "organization":"couchbase", "location":"sf-office", "description":"Trauns Macbook Virtual Beacon"},
-{"description":"Waynes iphone","location":"sf-office","major":11172,"minor":1518,"organization":"couchbase","type":"beacon","uuid":"8492E75F-4FD6-469D-B132-043FE94921D8"}
+{"type":"beacon","uuid":"08D4A950-80F0-4D42-A14B-D53E063516E6", "major":61001, "minor":13001, "organization":"couchbase", "location":"mobile", "desc":"Trauns Macbook Virtual Beacon"},
+{"desc":"Waynes iphone","location":"mobile","major":11172,"minor":1518,"organization":"couchbase","type":"beacon","uuid":"8492E75F-4FD6-469D-B132-043FE94921D8"}
 ]

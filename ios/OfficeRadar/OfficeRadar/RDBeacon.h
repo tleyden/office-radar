@@ -28,7 +28,7 @@
 @property (readwrite) NSNumber* minor;
 
 /** Description of beacon */
-@property (readwrite) NSString* description;
+@property (readwrite) NSString* desc;
 
 /** Location of beacon, eg "sf-office" */
 @property (readwrite) NSString* location;

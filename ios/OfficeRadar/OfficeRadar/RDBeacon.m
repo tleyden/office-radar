@@ -7,7 +7,7 @@
 
 @implementation RDBeacon
 
-@dynamic uuid, major, minor, description, location, organization;
+@dynamic uuid, major, minor, desc, location, organization;
 
 
 + (NSString*) docType {
