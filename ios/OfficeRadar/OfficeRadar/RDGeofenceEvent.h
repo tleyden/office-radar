@@ -4,6 +4,7 @@
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "ESTBeaconManager.h"
 #import "RDBeacon.h"
+#import "RDUserProfile.h"
 
 /** Whenever the user enters or exits a beacon geofence, record a raw event. */
 
@@ -12,8 +13,8 @@
 /** The "type" property value for documents that belong to this class. */
 + (NSString*) docType;
 
-/** The user_id is usually an email address. */
-@property (readwrite) NSString* user_id;
+/** The user_id. In facebook case, it's a big number. */
+@property (readwrite) RDUserProfile* userProfile;
 
 /** The beacon. */
 @property (readwrite) RDBeacon* beacon;
@@ -27,7 +28,7 @@
 /** initializer */
 - (instancetype) initInDatabase: (CBLDatabase*)database
                      withBeacon: (RDBeacon*)beacon
-                         userID: (NSString*)userId
+                    userProfile: (RDUserProfile*)userProfile
                          action: (NSString*)action;
 
 

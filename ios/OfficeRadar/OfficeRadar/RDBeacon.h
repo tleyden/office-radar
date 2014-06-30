@@ -15,6 +15,9 @@
 /** Find the RDBeacon model instance corresponding to given ESTBeaconRegion */
 + (RDBeacon*) beaconForRegion:(ESTBeaconRegion*)region inDatabase:(CBLDatabase *)database;
 
+/** Find the first beacon in the db (useful for testing/experimenting) */
++ (RDBeacon*) firstBeaconInDatabase:(CBLDatabase *)database;
+
 /** The uuid of the beacon.  Together with major and minor, these uniquely identify beacon */
 @property (readwrite) NSString* uuid;
 

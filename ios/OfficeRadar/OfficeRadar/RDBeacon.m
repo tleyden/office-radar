@@ -47,6 +47,28 @@
     
 }
 
++ (RDBeacon*) firstBeaconInDatabase:(CBLDatabase *)database {
+    CBLQuery* query = [[database viewNamed:kViewBeacons] createQuery];
+    query.limit = 1;
+    
+    // run query to find document
+    CBLDocument *beaconDocument;
+    NSError *error;
+    CBLQueryEnumerator* result = [query run: &error];
+    
+    for (CBLQueryRow* row in result) {
+        NSLog(@"Found beacon for key: %@ beacon id: %@", row.key, row.value);
+        beaconDocument = [database documentWithID:row.value];
+        break;
+    }
+    
+    // get a model for the document
+    RDBeacon *beacon = [RDBeacon modelForDocument:beaconDocument];
+    
+    return beacon;
+    
+}
+
 - (instancetype) initInDatabase: (CBLDatabase*)database
                        withUuid: (NSString*)uuid
                           major: (NSNumber*)major

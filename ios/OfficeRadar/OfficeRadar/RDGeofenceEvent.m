@@ -5,7 +5,7 @@
 
 @implementation RDGeofenceEvent
 
-@dynamic beacon, created_at, user_id, action;
+@dynamic beacon, created_at, userProfile, action;
 
 + (NSString*) docType {
     return kGeofenceEventDocType;
@@ -13,7 +13,7 @@
 
 - (instancetype) initInDatabase: (CBLDatabase*)database
                      withBeacon: (RDBeacon*)beacon
-                         userID: (NSString*)userId
+                    userProfile: (RDUserProfile*)userProfile
                          action: (NSString*)action {
     
     self = [super initWithNewDocumentInDatabase: database];
@@ -22,7 +22,7 @@
         // It's used in map functions and by the CBLModelFactory.
         [self setValue: [[self class] docType] ofProperty: @"type"];
         self.beacon = beacon;
-        self.user_id = userId;
+        self.userProfile = userProfile;
         self.action = action;
         self.created_at = [NSDate date];
     }

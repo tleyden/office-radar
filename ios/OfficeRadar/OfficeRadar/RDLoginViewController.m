@@ -2,6 +2,8 @@
 #import "RDLoginViewController.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "RDConstants.h"
+#import "RDDatabaseHelper.h"
+#import "RDUserHelper.h"
 
 @interface RDLoginViewController ()
 
@@ -36,16 +38,8 @@
                             user:(id<FBGraphUser>)user {
     NSLog(@"loginViewFetchedUserInfo");
     
-    NSError *error;
+    [[RDUserHelper sharedInstance] facebookUserLoggedIn:user];
 
-    // get database
-    CBLDatabase *database = [[CBLManager sharedInstance] databaseNamed:kDatabaseName error:&error];
-    [self showAlertIfError:error withMessage:@"Unable to get database"];
-    
-    // save local doc with fb user id
-    NSDictionary *localDoc = @{kLocalDocUserId: [user objectID]};
-    [database putLocalDocument:localDoc withID:kLocalDocUserId error:&error];
-    [self showAlertIfError:error withMessage:@"Unable to save local doc"];
     
 
 }
@@ -63,16 +57,9 @@
     NSLog(@"loginViewShowingLoggedOutUser");
     [[self nextButton] setEnabled:NO];
     
-    NSError *error;
+    [[RDUserHelper sharedInstance] facebookUserLoggedOut];
 
-    // get database
-    CBLDatabase *database = [[CBLManager sharedInstance] databaseNamed:kDatabaseName error:&error];
-    [self showAlertIfError:error withMessage:@"Unable to get database"];
-    
-    // delete local doc with fb user id
-    [database deleteLocalDocumentWithID:kLocalDocUserId error:&error];
-    // first time user uses app, will see this error.
-    // [self showAlertIfError:error withMessage:@"Unable to delete local doc"];
+
 
 }
 

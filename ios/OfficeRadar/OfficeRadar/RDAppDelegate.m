@@ -3,6 +3,7 @@
 #import "RDBeaconManager.h"
 #import "RDConstants.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "RDDatabaseHelper.h"
 
 @implementation RDAppDelegate
 
@@ -77,13 +78,8 @@
 
 - (void)initCouchbaseLiteDatabase {
 
-    NSError *error;
     self.manager = [CBLManager sharedInstance];
-
-    self.database = [[self manager] databaseNamed:kDatabaseName error:&error];
-    if (![self database]) {
-        NSLog (@"Cannot create/retrieve database. Error message: %@", error.localizedDescription);
-    }
+    self.database = [RDDatabaseHelper database];
     
 }
 

@@ -2,6 +2,10 @@
 #import "RDMasterViewController.h"
 
 #import "RDDetailViewController.h"
+#import "RDBeacon.h"
+#import "RDDatabaseHelper.h"
+#import "RDBeaconManager.h"
+#import "RDConstants.h"
 
 @interface RDMasterViewController () {
     NSMutableArray *_objects;
@@ -38,12 +42,11 @@
 
 - (void)insertNewObject:(id)sender
 {
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSDate date] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    RDBeacon *beacon = [RDBeacon firstBeaconInDatabase:[RDDatabaseHelper database]];
+    RDBeaconManager *beaconManager = [[RDBeaconManager alloc] initWithDatabase:[RDDatabaseHelper database]];
+    [beaconManager saveGeofenceForBeacon:beacon action:kActionEntry];
+    
 }
 
 #pragma mark - Table View

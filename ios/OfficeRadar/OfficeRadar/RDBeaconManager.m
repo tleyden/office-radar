@@ -6,6 +6,7 @@
 #import "RDGeofenceEvent.h"
 #import "RDUserHelper.h"
 #import <CouchbaseLite/CouchbaseLite.h>
+#import "RDUserProfile.h"
 
 @implementation RDBeaconManager
 
@@ -84,14 +85,14 @@
     NSLog(@"Monitoring for beacon region: %@", beaconRegion);
     
     // TODO: remove this .. just experimenting
-    // RDBeacon *beacon = [RDBeacon beaconForRegion:beaconRegion inDatabase:[self database]];
-    // NSLog(@"beacon: %@", beacon);
-    // [self saveGeofenceForRegion:beaconRegion action:kActionEntry];
+    //RDBeacon *beacon = [RDBeacon beaconForRegion:beaconRegion inDatabase:[self database]];
+    //NSLog(@"beacon: %@", beacon);
+    //[self saveGeofenceForRegion:beaconRegion action:kActionEntry];
     
 }
 
-- (void)saveGeofenceForRegion:(ESTBeaconRegion *)region action:(NSString *)action {
-    
+- (void)saveGeofenceForBeacon:(RDBeacon *)beacon action:(NSString *)action {
+
     NSString *loggedInUserId = [[RDUserHelper sharedInstance] loggedInUserId];
     
     if (loggedInUserId == nil) {
@@ -99,14 +100,15 @@
         return;
     }
     
-    RDBeacon *beacon = [RDBeacon beaconForRegion:region inDatabase:[self database]];
+    RDUserProfile *userProfile = [RDUserProfile profileWithUserId:loggedInUserId];
+    
+    
     
     RDGeofenceEvent *geofenceEvent = [[RDGeofenceEvent alloc] initInDatabase:[self database]
                                                                   withBeacon:beacon
-                                                                      userID:loggedInUserId
+                                                                 userProfile:userProfile
                                                                       action:action];
 
-    
     NSError *error;
     BOOL saved = [geofenceEvent save:&error];
     
@@ -118,6 +120,14 @@
         notification.alertBody = @"OfficeRadar: failed to save geofence event";
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }
+    
+}
+
+- (void)saveGeofenceForRegion:(ESTBeaconRegion *)region action:(NSString *)action {
+    
+    RDBeacon *beacon = [RDBeacon beaconForRegion:region inDatabase:[self database]];
+    [self saveGeofenceForBeacon:beacon action:action];
+    
 }
 
 #pragma mark - ESTBeaconManager delegate
