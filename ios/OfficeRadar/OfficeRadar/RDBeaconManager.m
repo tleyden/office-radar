@@ -37,7 +37,7 @@
 
 - (void) createDbViews {
     
-    CBLView* view = [[self database] viewNamed: @"beacons"];
+    CBLView* view = [[self database] viewNamed: kViewBeacons];
     [view setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
         NSString *docType = (NSString *) doc[kDocType];
         if ([docType isEqualToString:kDocTypeBeacon]) {

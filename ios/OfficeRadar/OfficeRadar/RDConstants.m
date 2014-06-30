@@ -20,6 +20,9 @@ NSString *const kDatabaseName = @"office_radar";
 NSString *const kLocalDocUserId = @"user_id";
 NSString *const kUserProfileDocType = @"profile";
 NSString *const kAuthSystemFacebook = @"facebook";
+NSString *const kViewGeofenceEvents = @"geofence_events";
+NSString *const kFieldCreatedAt = @"created_at";
+
 
 
 @end

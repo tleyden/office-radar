@@ -6,6 +6,7 @@
 #import "RDDatabaseHelper.h"
 #import "RDBeaconManager.h"
 #import "RDConstants.h"
+#import <CouchbaseLite/CouchbaseLite.h>
 
 @interface RDMasterViewController () {
     NSMutableArray *_objects;
@@ -32,6 +33,39 @@
     UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
     self.navigationItem.rightBarButtonItem = addButton;
     self.detailViewController = (RDDetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    [self createDbViews];
+    
+    self.tableSource = [[CBLUITableSource alloc] init];
+    self.tableSource.query = [self createLiveQuery];
+    self.tableSource.tableView = self.tableView;
+    
+    [[self tableView] setDataSource:self.tableSource];
+    
+    
+}
+
+- (CBLLiveQuery *) createLiveQuery {
+    CBLQuery* query = [[[RDDatabaseHelper database] viewNamed:kViewGeofenceEvents] createQuery];
+    return [query asLiveQuery];
+}
+
+- (void) createDbViews {
+    
+    CBLView* view = [[RDDatabaseHelper database] viewNamed: kViewGeofenceEvents];
+    [view setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
+        NSString *docType = (NSString *) doc[kDocType];
+        if ([docType isEqualToString:kGeofenceEventDocType]) {
+            NSDate *createdAt = (NSDate *) doc[kFieldCreatedAt];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setDateStyle:NSDateFormatterShortStyle];
+            NSString *dateString = [dateFormat stringFromDate:createdAt];
+            emit(dateString, doc[@"_id"]);
+        }
+        
+    } version:@"1"];
+    
+    
 }
 
 - (void)didReceiveMemoryWarning

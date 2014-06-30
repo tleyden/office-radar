@@ -21,10 +21,8 @@ extern NSString *const kDatabaseName;
 extern NSString *const kLocalDocUserId;
 extern NSString *const kUserProfileDocType;
 extern NSString *const kAuthSystemFacebook;
-
-
-
-
+extern NSString *const kViewGeofenceEvents;
+extern NSString *const kFieldCreatedAt;
 
 
 @end
