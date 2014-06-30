@@ -1,4 +1,4 @@
-
+    
 
 #import "RDUserHelper.h"
 #import <CouchbaseLite/CouchbaseLite.h>

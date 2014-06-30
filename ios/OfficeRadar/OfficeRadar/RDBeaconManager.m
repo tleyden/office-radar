@@ -100,13 +100,13 @@
         return;
     }
     
-    RDUserProfile *userProfile = [RDUserProfile profileWithUserId:loggedInUserId];
+    RDUserProfile *profile = [RDUserProfile profileWithUserId:loggedInUserId];
     
     
     
     RDGeofenceEvent *geofenceEvent = [[RDGeofenceEvent alloc] initInDatabase:[self database]
                                                                   withBeacon:beacon
-                                                                 userProfile:userProfile
+                                                                     profile:profile
                                                                       action:action];
 
     NSError *error;

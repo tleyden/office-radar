@@ -14,7 +14,7 @@
 + (NSString*) docType;
 
 /** The user_id. In facebook case, it's a big number. */
-@property (readwrite) RDUserProfile* userProfile;
+@property (readwrite) RDUserProfile* profile;
 
 /** The beacon. */
 @property (readwrite) RDBeacon* beacon;
@@ -28,7 +28,7 @@
 /** initializer */
 - (instancetype) initInDatabase: (CBLDatabase*)database
                      withBeacon: (RDBeacon*)beacon
-                    userProfile: (RDUserProfile*)userProfile
+                        profile: (RDUserProfile*)profile
                          action: (NSString*)action;
 
 
