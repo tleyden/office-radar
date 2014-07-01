@@ -77,7 +77,7 @@
     ESTBeaconRegion *beaconRegion = [[ESTBeaconRegion alloc] initWithProximityUUID:uuid
                                                                  major:[major intValue]
                                                                  minor:[minor intValue]
-                                                            identifier:@"RegionIdentifier"];
+                                                            identifier:change.documentID];
     beaconRegion.notifyOnEntry = YES;
     beaconRegion.notifyOnExit = YES;
     
