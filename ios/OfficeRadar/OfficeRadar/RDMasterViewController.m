@@ -93,9 +93,22 @@
     CBLDocument *document = [source documentAtIndexPath:indexPath];
     RDGeofenceEvent *geofenceEvent = [RDGeofenceEvent modelForDocument:document];
     
-    // cell.textLabel.text = geofenceEvent.profile.name;
-    // cell.textLabel.text = geofenceEvent.action;
-    cell.textLabel.text = geofenceEvent.beacon.location;
+    NSString *username = geofenceEvent.profile.name;
+    NSString *renamedAction;
+    if ([geofenceEvent.action isEqualToString:kActionEntry]) {
+        renamedAction = @"entered";
+    } else {
+        renamedAction = @"exited";
+    }
+    NSString *text = [NSString stringWithFormat:@"%@ %@ %@", username, renamedAction, geofenceEvent.beacon.location];
+    cell.textLabel.text = text;
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateStyle:NSDateFormatterShortStyle];
+    [dateFormat setTimeStyle:NSDateFormatterShortStyle];
+    NSString *dateString = [dateFormat stringFromDate:geofenceEvent.created_at];
+    
+    cell.detailTextLabel.text = dateString;
     
     return cell;
 
@@ -113,6 +126,7 @@
     return _objects.count;
 }
 
+/*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
@@ -121,6 +135,7 @@
     cell.textLabel.text = [object description];
     return cell;
 }
+*/
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
