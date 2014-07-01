@@ -2,6 +2,9 @@
    "interface":":4984",
    "adminInterface":":4985",
    "log":["REST"],
+   "facebook" : {
+      "register" : true
+   },
    "databases":{
       "office_radar":{
          "bucket":"walrus:/opt/sync_gateway/data",
