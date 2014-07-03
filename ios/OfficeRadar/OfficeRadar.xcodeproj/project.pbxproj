@@ -41,6 +41,7 @@
 		158FBC5D195E28BB00A218EE /* libEstimoteSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC5C195E28BB00A218EE /* libEstimoteSDK.a */; };
 		158FBC5F195E28C500A218EE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC5E195E28C500A218EE /* CoreBluetooth.framework */; };
 		158FBC61195E28CC00A218EE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC60195E28CC00A218EE /* CoreLocation.framework */; };
+		15B61D91196603B100F9E0CB /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B61D90196603B100F9E0CB /* libc++.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,7 @@
 		158FBC5C195E28BB00A218EE /* libEstimoteSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEstimoteSDK.a; path = EstimoteSDK/libEstimoteSDK.a; sourceTree = "<group>"; };
 		158FBC5E195E28C500A218EE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		158FBC60195E28CC00A218EE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		15B61D90196603B100F9E0CB /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15B61D91196603B100F9E0CB /* libc++.dylib in Frameworks */,
 				158FBC50195E182500A218EE /* SystemConfiguration.framework in Frameworks */,
 				158FBC61195E28CC00A218EE /* CoreLocation.framework in Frameworks */,
 				158FBC5F195E28C500A218EE /* CoreBluetooth.framework in Frameworks */,
@@ -160,6 +163,7 @@
 		158FBC0D195E0BB000A218EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15B61D90196603B100F9E0CB /* libc++.dylib */,
 				1551193C195F8B06007C9A54 /* FacebookSDK.framework */,
 				158FBC60195E28CC00A218EE /* CoreLocation.framework */,
 				158FBC5E195E28C500A218EE /* CoreBluetooth.framework */,
