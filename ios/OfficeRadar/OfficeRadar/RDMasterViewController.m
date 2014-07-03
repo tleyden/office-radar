@@ -93,15 +93,7 @@
     CBLDocument *document = [source documentAtIndexPath:indexPath];
     RDGeofenceEvent *geofenceEvent = [RDGeofenceEvent modelForDocument:document];
     
-    NSString *username = geofenceEvent.profile.name;
-    NSString *renamedAction;
-    if ([geofenceEvent.action isEqualToString:kActionEntry]) {
-        renamedAction = @"entered";
-    } else {
-        renamedAction = @"exited";
-    }
-    NSString *text = [NSString stringWithFormat:@"%@ %@ %@", username, renamedAction, geofenceEvent.beacon.location];
-    cell.textLabel.text = text;
+    cell.textLabel.text = [geofenceEvent prettyPrint];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateStyle:NSDateFormatterShortStyle];

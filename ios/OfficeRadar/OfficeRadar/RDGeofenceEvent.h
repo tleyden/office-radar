@@ -31,5 +31,9 @@
                         profile: (RDUserProfile*)profile
                          action: (NSString*)action;
 
+/** Get a friendly description of this suitable for showing in UI */
+- (NSString *) prettyPrint;
+
+
 
 @end

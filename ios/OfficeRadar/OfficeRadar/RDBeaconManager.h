@@ -10,8 +10,9 @@
 @property (strong, nonatomic) ESTBeaconManager *estimoteBeaconManager;
 
 - (RDBeaconManager *)initWithDatabase:(CBLDatabase *)database;
-- (void) observeDatabase;
-- (void) createDbViews;
+- (void)observeDatabase;
+- (void)createDbViews;
 - (void)saveGeofenceForBeacon:(RDBeacon *)beacon action:(NSString *)action;
+- (void)monitorAllBeacons;
 
 @end

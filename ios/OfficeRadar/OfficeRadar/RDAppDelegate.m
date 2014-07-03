@@ -88,6 +88,8 @@
     self.beaconManager = [[RDBeaconManager alloc] initWithDatabase:[self database]];
     [[self beaconManager] observeDatabase];
     [[self beaconManager] createDbViews];
+    [[self beaconManager] monitorAllBeacons];
+    
 
 }
 

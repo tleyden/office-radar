@@ -20,7 +20,7 @@
     return self;
 }
 
-- (void) observeDatabase {
+- (void)observeDatabase {
     
     [[NSNotificationCenter defaultCenter] addObserverForName: kCBLDatabaseChangeNotification
                                                       object: [self database]
@@ -35,7 +35,7 @@
     
 }
 
-- (void) createDbViews {
+- (void)createDbViews {
     
     CBLView* view = [[self database] viewNamed: kViewBeacons];
     [view setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
@@ -53,7 +53,35 @@
     
 }
 
-- (void) handleDbChange:(CBLDatabaseChange *)change {
+- (void)monitorAllBeacons {
+    CBLQuery* query = [[[self database] viewNamed:kViewBeacons] createQuery];
+    
+    // run query to find document
+    CBLDocument *beaconDocument;
+    NSError *error;
+    CBLQueryEnumerator* result = [query run: &error];
+    
+    for (CBLQueryRow* row in result) {
+        beaconDocument = [[self database] documentWithID:row.value];
+        RDBeacon *beacon = [RDBeacon modelForDocument:beaconDocument];
+        [self startMonitoringForBeacon:beacon];
+    }
+}
+
+- (void)startMonitoringForBeacon:(RDBeacon *)beacon {
+    
+    ESTBeaconRegion *beaconRegion = [beacon regionForBeacon];
+
+    beaconRegion.notifyOnEntry = YES;
+    beaconRegion.notifyOnExit = YES;
+    
+    [self.estimoteBeaconManager startMonitoringForRegion:beaconRegion];
+    NSLog(@"Monitoring for beacon region: %@", beaconRegion);
+
+    
+}
+
+- (void)handleDbChange:(CBLDatabaseChange *)change {
     
     NSLog(@"Document '%@' changed.", change.documentID);
     
@@ -67,27 +95,8 @@
         return;
     }
     
-    NSString *uuidStr = (NSString *) [changedDoc propertyForKey:kFieldUuid];
-    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:uuidStr];
-    NSNumber *major = (NSNumber *) [changedDoc propertyForKey:kFieldMajor];
-    NSNumber *minor = (NSNumber *) [changedDoc propertyForKey:kFieldMinor];
-    
-    // otherwise if its a beacon doc, register it with core location
-    // TODO: research dupe registration of core location and see if it causes issues
-    ESTBeaconRegion *beaconRegion = [[ESTBeaconRegion alloc] initWithProximityUUID:uuid
-                                                                 major:[major intValue]
-                                                                 minor:[minor intValue]
-                                                            identifier:change.documentID];
-    beaconRegion.notifyOnEntry = YES;
-    beaconRegion.notifyOnExit = YES;
-    
-    [self.estimoteBeaconManager startMonitoringForRegion:beaconRegion];
-    NSLog(@"Monitoring for beacon region: %@", beaconRegion);
-    
-    // TODO: remove this .. just experimenting
-    //RDBeacon *beacon = [RDBeacon beaconForRegion:beaconRegion inDatabase:[self database]];
-    //NSLog(@"beacon: %@", beacon);
-    //[self saveGeofenceForRegion:beaconRegion action:kActionEntry];
+    RDBeacon *beacon = [RDBeacon modelForDocument:changedDoc];
+    [self startMonitoringForBeacon:beacon];
     
 }
 
@@ -121,6 +130,10 @@
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }
     
+    UILocalNotification *notification = [UILocalNotification new];
+    notification.alertBody = [geofenceEvent prettyPrint];
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+    
 }
 
 - (void)saveGeofenceForRegion:(ESTBeaconRegion *)region action:(NSString *)action {
@@ -134,25 +147,12 @@
 
 - (void)beaconManager:(ESTBeaconManager *)manager didEnterRegion:(ESTBeaconRegion *)region
 {
-    UILocalNotification *notification = [UILocalNotification new];
-    notification.alertBody = @"OfficeRadar: enter";
-    
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    
     [self saveGeofenceForRegion:region action:kActionEntry];
-    
 }
 
 - (void)beaconManager:(ESTBeaconManager *)manager didExitRegion:(ESTBeaconRegion *)region
 {
-    UILocalNotification *notification = [UILocalNotification new];
-    notification.alertBody = @"OfficeRadar: exit";
-    
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    
     [self saveGeofenceForRegion:region action:kActionExit];
-
-    
 }
 
 

@@ -70,6 +70,21 @@
     
 }
 
+- (ESTBeaconRegion*) regionForBeacon {
+    
+    NSUUID *uuid = [[NSUUID alloc] initWithUUIDString:[self uuid]];
+    
+    // otherwise if its a beacon doc, register it with core location
+    // TODO: research dupe registration of core location and see if it causes issues
+    ESTBeaconRegion *beaconRegion = [[ESTBeaconRegion alloc] initWithProximityUUID:uuid
+                                                                             major:[[self major] intValue]
+                                                                             minor:[[self minor] intValue]
+                                                                        identifier:[[self document] documentID]];
+    return beaconRegion;
+
+    
+}
+
 - (instancetype) initInDatabase: (CBLDatabase*)database
                        withUuid: (NSString*)uuid
                           major: (NSNumber*)major
