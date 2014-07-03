@@ -1,5 +1,7 @@
 
-See who's in the office.  [Couchbase Mobile](http://developer.couchbase.com/mobile/) + [Estimote](http://estimote.com/) beacons.
+See who's in the office.  
+
+Uses [Couchbase Mobile](http://developer.couchbase.com/mobile/) in conjunction with [Estimote](http://estimote.com/) beacons.
 
 ![screenshot](http://tleyden-misc.s3.amazonaws.com/blog_images/office_radar_twoscreens_sm.png)
 
