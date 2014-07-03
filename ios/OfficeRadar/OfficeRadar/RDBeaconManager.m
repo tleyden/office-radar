@@ -130,10 +130,6 @@
         [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     }
     
-    UILocalNotification *notification = [UILocalNotification new];
-    notification.alertBody = [geofenceEvent prettyPrint];
-    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
-    
 }
 
 - (void)saveGeofenceForRegion:(ESTBeaconRegion *)region action:(NSString *)action {

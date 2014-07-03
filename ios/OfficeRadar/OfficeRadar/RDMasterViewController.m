@@ -94,9 +94,15 @@ static NSDateFormatter* getISO8601Formatter() {
 - (void)insertNewObject:(id)sender
 {
     
-    RDBeacon *beacon = [RDBeacon firstBeaconInDatabase:[RDDatabaseHelper database]];
-    RDBeaconManager *beaconManager = [[RDBeaconManager alloc] initWithDatabase:[RDDatabaseHelper database]];
-    [beaconManager saveGeofenceForBeacon:beacon action:kActionEntry];
+    [[[UIAlertView alloc] initWithTitle:@"Oops"
+                                message:@"This is not the button you are looking for."
+                               delegate:nil
+                      cancelButtonTitle:@"OK"
+                      otherButtonTitles:nil] show];
+    
+    // RDBeacon *beacon = [RDBeacon firstBeaconInDatabase:[RDDatabaseHelper database]];
+    // RDBeaconManager *beaconManager = [[RDBeaconManager alloc] initWithDatabase:[RDDatabaseHelper database]];
+    // [beaconManager saveGeofenceForBeacon:beacon action:kActionEntry];
     
 }
 
