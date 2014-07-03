@@ -23,8 +23,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self nextButton] setEnabled:NO];
-    // Do any additional setup after loading the view.
+    
+    self.radarButton = [[UIBarButtonItem alloc] initWithTitle:@"Radar"
+                                                        style:UIBarButtonItemStylePlain
+                                                       target:self
+                                                       action:@selector(showRadarScreen)];
+    
+    [self.radarButton setEnabled:NO];
+    self.navigationItem.rightBarButtonItem = self.radarButton;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -36,19 +43,17 @@
 // This method will be called when the user information has been fetched
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user {
-    NSLog(@"loginViewFetchedUserInfo");
     
     [[RDUserHelper sharedInstance] facebookUserLoggedIn:user];
-
 
 }
 
 
 // Logged-in user experience
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    NSLog(@"loginViewShowingLoggedInUser");
-    [[self nextButton] setEnabled:YES];
     
+    [self.radarButton setEnabled:YES];
+
     [[self activityIndicator] startAnimating];
     
     [self performSelector:@selector(showRadarScreen) withObject:nil afterDelay:1];
@@ -65,12 +70,8 @@
 
 // Logged-out user experience
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    NSLog(@"loginViewShowingLoggedOutUser");
-    [[self nextButton] setEnabled:NO];
     
     [[RDUserHelper sharedInstance] facebookUserLoggedOut];
-
-
 
 }
 

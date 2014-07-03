@@ -5,10 +5,10 @@
 
 @interface RDLoginViewController : UIViewController <FBLoginViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *nextButton;
 
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
+@property (strong, nonatomic) UIBarButtonItem *radarButton;
 
 
 @end
