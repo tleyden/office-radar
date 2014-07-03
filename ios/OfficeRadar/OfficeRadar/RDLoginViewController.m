@@ -71,6 +71,8 @@
 // Logged-out user experience
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
     
+    [self.radarButton setEnabled:NO];
+
     [[RDUserHelper sharedInstance] facebookUserLoggedOut];
 
 }
