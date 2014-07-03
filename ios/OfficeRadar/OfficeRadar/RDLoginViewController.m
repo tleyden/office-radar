@@ -40,7 +40,6 @@
     
     [[RDUserHelper sharedInstance] facebookUserLoggedIn:user];
 
-    
 
 }
 
@@ -49,6 +48,18 @@
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
     NSLog(@"loginViewShowingLoggedInUser");
     [[self nextButton] setEnabled:YES];
+    
+    [[self activityIndicator] startAnimating];
+    
+    [self performSelector:@selector(showRadarScreen) withObject:nil afterDelay:1];
+    
+
+}
+
+- (void)showRadarScreen {
+    [[self activityIndicator] stopAnimating];
+    
+    [self performSegueWithIdentifier:@"radarScreen" sender:self];
 
 }
 
