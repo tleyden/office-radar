@@ -122,7 +122,7 @@
     BOOL saved = [geofenceEvent save:&error];
     
     CBLDocument *document = [geofenceEvent document];
-    NSLog(@"document properties: %@", [document properties]);
+    NSLog(@"saveGeofenceForBeacon: %@", [document properties]);
     
     if (!saved) {
         UILocalNotification *notification = [UILocalNotification new];
