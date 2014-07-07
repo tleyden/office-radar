@@ -49,9 +49,38 @@
         }
         
     } version:@"1"];
+    
+    CBLView* geofenceEventsView = [[self database] viewNamed: kViewGeofenceEvents];
+    [geofenceEventsView setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
+        NSString *docType = (NSString *) doc[kDocType];
+        if ([docType isEqualToString:kGeofenceEventDocType]) {
+            NSDateFormatter *dateFormatter = getISO8601Formatter();
+            NSString *createdAtString = doc[kFieldCreatedAt];
+            NSDate *createdAt = [dateFormatter dateFromString:createdAtString];
+            NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+            [dateFormat setFormatterBehavior:NSDateFormatterBehavior10_4];
+            [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+            NSString *key = [dateFormat stringFromDate:createdAt];
+            emit(key, doc[@"_id"]);
+        }
+    } version:@"7"];
 
     
 }
+
+static NSDateFormatter* getISO8601Formatter() {
+    static NSDateFormatter* sFormatter;
+    if (!sFormatter) {
+        // Thanks to DenNukem's answer in http://stackoverflow.com/questions/399527/
+        sFormatter = [[NSDateFormatter alloc] init];
+        sFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
+        sFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
+        sFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        sFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
+    }
+    return sFormatter;
+}
+
 
 - (void)monitorAllBeacons {
     CBLQuery* query = [[[self database] viewNamed:kViewBeacons] createQuery];
@@ -66,6 +95,26 @@
         RDBeacon *beacon = [RDBeacon modelForDocument:beaconDocument];
         [self startMonitoringForBeacon:beacon];
     }
+    
+    // [self deleteAllGeofenceEvents];
+}
+
+- (void)deleteAllGeofenceEvents {
+    
+    CBLQuery* query = [[[self database] viewNamed:kViewGeofenceEvents] createQuery];
+    [query setDescending:YES];
+    
+    NSError *error;
+    CBLQueryEnumerator* result = [query run: &error];
+    
+    for (CBLQueryRow* row in result) {
+        CBLDocument *document = [[self database] documentWithID:row.value];
+        NSError *deleteError;
+        [document deleteDocument:&deleteError];
+    }
+    
+    
+    
 }
 
 - (void)startMonitoringForBeacon:(RDBeacon *)beacon {
