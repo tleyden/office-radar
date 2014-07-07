@@ -73,6 +73,32 @@
     
 }
 
+- (RDUserProfile *)loggedInUserProfile {
+    NSString *userId = [self loggedInUserId];
+    if (userId == nil) {
+        return nil;
+    }
+    CBLDocument *userProfileDoc = [[RDDatabaseHelper database] documentWithID:userId];
+    if (userProfileDoc == nil) {
+        return nil;
+    }
+    RDUserProfile *userProfile = [RDUserProfile modelForDocument:userProfileDoc];
+    return userProfile;
+}
+
+
+
+- (BOOL)isAdminLoggedIn {
+    RDUserProfile *userProfile = [self loggedInUserProfile];
+    if (userProfile == nil) {
+        return NO;
+    }
+    // TODO: add field to user profile instead of this hack
+    NSRange range = [userProfile.name rangeOfString:@"Traun"];
+    return range.location != NSNotFound;
+    
+}
+
 // TODO: this method is duplicated, refactoring needed
 - (void)showAlertIfError:(NSError *)error withMessage:(NSString *)message {
     if (error != nil) {

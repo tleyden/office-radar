@@ -8,6 +8,7 @@
 #import "RDConstants.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "RDGeofenceEvent.h"
+#import "RDUserHelper.h"
 
 @interface RDMasterViewController () {
     NSMutableArray *_objects;
@@ -35,6 +36,10 @@
     self.tableSource.tableView = self.tableView;
     
     [[self tableView] setDataSource:self.tableSource];
+    
+    if ([[RDUserHelper sharedInstance] isAdminLoggedIn]) {
+       self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    }
     
     
 }
