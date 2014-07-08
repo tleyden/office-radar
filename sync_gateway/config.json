@@ -12,7 +12,8 @@
 	 "users": { "GUEST": {"disabled": false, "all_channels": ["*"], "admin_channels": ["*"]} }
       },
       "todolite": {
-      "server": "walrus:",
+      "server": "172.17.0.2:8091",
+      "bucket": "default",
       "users": {
         "GUEST": {"disabled": true}
       },
