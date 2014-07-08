@@ -1,7 +1,7 @@
 {
    "interface":":4984",
    "adminInterface":":4985",
-   "log":["REST"],
+   "log":["REST", "Changes+"],
    "facebook" : {
       "register" : true
    },
