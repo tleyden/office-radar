@@ -105,25 +105,52 @@
     [pushReplication start];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(pullReplicationProgress:)
+                                             selector:@selector(replicationProgress:)
                                                  name:kCBLReplicationChangeNotification
                                                object:pullReplication];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(pushReplicationProgress:)
+                                             selector:@selector(replicationProgress:)
                                                  name:kCBLReplicationChangeNotification
                                                object:pushReplication];
 }
 
 
 
+-(void)replicationProgress:(NSNotification *)notification {
 
--(void)pullReplicationProgress:(NSNotification *)notification {
-    NSLog(@"pullReplicationProgress");
+    CBLReplication *repl = [notification object];
+    [self replicationProgress:repl notification:notification];
+    
 }
 
--(void)pushReplicationProgress:(NSNotification *)notification {
-    NSLog(@"pushReplicationProgress");
+
+-(void)replicationProgress:(CBLReplication *)repl notification:(NSNotification *)notification {
+    bool active = false;
+    unsigned completed = 0, total = 0;
+    CBLReplicationStatus status = kCBLReplicationStopped;
+    NSError *error = nil;
+    status = MAX(status, repl.status);
+    if (!error)
+        error = repl.lastError;
+    if (repl.status == kCBLReplicationActive) {
+        active = true;
+        completed += repl.completedChangesCount;
+        total += repl.changesCount;
+    }
+    
+    if (error.code == 401) {
+        NSLog(@"401 auth error");
+    }
+    
+    if (repl.pull) {
+        NSLog(@"Pull: active=%d; status=%d; %u/%u; %@",
+              active, status, completed, total, error.localizedDescription);
+    } else {
+        NSLog(@"Push: active=%d; status=%d; %u/%u; %@",
+              active, status, completed, total, error.localizedDescription);
+    }
+    
 }
 
 
