@@ -95,26 +95,7 @@ static NSDateFormatter* getISO8601Formatter() {
         RDBeacon *beacon = [RDBeacon modelForDocument:beaconDocument];
         [self startMonitoringForBeacon:beacon];
     }
-    
-    // [self deleteAllGeofenceEvents];
-}
 
-- (void)deleteAllGeofenceEvents {
-    
-    CBLQuery* query = [[[self database] viewNamed:kViewGeofenceEvents] createQuery];
-    [query setDescending:YES];
-    
-    NSError *error;
-    CBLQueryEnumerator* result = [query run: &error];
-    
-    for (CBLQueryRow* row in result) {
-        CBLDocument *document = [[self database] documentWithID:row.value];
-        NSError *deleteError;
-        [document deleteDocument:&deleteError];
-    }
-    
-    
-    
 }
 
 - (void)startMonitoringForBeacon:(RDBeacon *)beacon {
