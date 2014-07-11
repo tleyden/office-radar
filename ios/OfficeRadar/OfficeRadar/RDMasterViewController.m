@@ -37,9 +37,12 @@
     
     [[self tableView] setDataSource:self.tableSource];
     
-    if ([[RDUserHelper sharedInstance] isAdminLoggedIn]) {
-       self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    }
+
+    self.navigationItem.rightBarButtonItem =
+        [[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+          target:self
+          action:@selector(insertNewObject:)];
     
     
 }
@@ -51,9 +54,6 @@
 }
 
 
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -63,15 +63,9 @@
 - (void)insertNewObject:(id)sender
 {
     
-    [[[UIAlertView alloc] initWithTitle:@"Oops"
-                                message:@"This is not the button you are looking for."
-                               delegate:nil
-                      cancelButtonTitle:@"OK"
-                      otherButtonTitles:nil] show];
-    
-    // RDBeacon *beacon = [RDBeacon firstBeaconInDatabase:[RDDatabaseHelper database]];
-    // RDBeaconManager *beaconManager = [[RDBeaconManager alloc] initWithDatabase:[RDDatabaseHelper database]];
-    // [beaconManager saveGeofenceForBeacon:beacon action:kActionEntry];
+    RDBeacon *beacon = [RDBeacon firstBeaconInDatabase:[RDDatabaseHelper database]];
+    RDBeaconManager *beaconManager = [[RDBeaconManager alloc] initWithDatabase:[RDDatabaseHelper database]];
+    [beaconManager saveGeofenceForBeacon:beacon action:kActionEntry];
     
 }
 
