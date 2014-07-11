@@ -54,9 +54,8 @@
     [geofenceEventsView setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
         NSString *docType = (NSString *) doc[kDocType];
         if ([docType isEqualToString:kGeofenceEventDocType]) {
-            NSDateFormatter *dateFormatter = getISO8601Formatter();
             NSString *createdAtString = doc[kFieldCreatedAt];
-            NSDate *createdAt = [dateFormatter dateFromString:createdAtString];
+            NSDate *createdAt = [CBLJSON dateWithJSONObject:createdAtString];
             NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
             [dateFormat setFormatterBehavior:NSDateFormatterBehavior10_4];
             [dateFormat setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
@@ -66,19 +65,6 @@
     } version:@"7"];
 
     
-}
-
-static NSDateFormatter* getISO8601Formatter() {
-    static NSDateFormatter* sFormatter;
-    if (!sFormatter) {
-        // Thanks to DenNukem's answer in http://stackoverflow.com/questions/399527/
-        sFormatter = [[NSDateFormatter alloc] init];
-        sFormatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'";
-        sFormatter.timeZone = [NSTimeZone timeZoneForSecondsFromGMT:0];
-        sFormatter.calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        sFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US"];
-    }
-    return sFormatter;
 }
 
 
