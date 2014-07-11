@@ -78,10 +78,8 @@
 
 - (void)initCouchbaseLiteDatabase {
 
-    [CBLManager enableLogging: @"SyncVerbose"];
-    [CBLManager enableLogging: @"ChangeTrackerVerbose"];
-    [CBLManager enableLogging: @"RemoteRequest"];
-    [CBLManager enableLogging: @"CBLDatabaseq"];
+    [CBLManager enableLogging: @"Sync"];
+    [CBLManager enableLogging: @"ChangeTracker"];
     
     self.manager = [CBLManager sharedInstance];
     self.database = [RDDatabaseHelper database];
