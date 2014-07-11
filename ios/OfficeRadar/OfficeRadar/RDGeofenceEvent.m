@@ -34,14 +34,20 @@
 
 - (NSString *) prettyPrint {
 
-     NSString *username = self.profile.name;
-     NSString *renamedAction;
-     if ([self.action isEqualToString:kActionEntry]) {
-         renamedAction = @"entered";
-     } else {
-         renamedAction = @"exited";
-     }
-     return  [NSString stringWithFormat:@"%@ %@ %@", username, renamedAction, self.beacon.location];
+    NSString *username = self.profile.name;
+    
+    const int clipLength = 12;
+    if([username length] > clipLength) {
+        username = [NSString stringWithFormat:@"%@...",[username substringToIndex:clipLength]];
+    }
+    
+    NSString *renamedAction;
+    if ([self.action isEqualToString:kActionEntry]) {
+        renamedAction = @"entered";
+    } else {
+        renamedAction = @"exited";
+    }
+    return  [NSString stringWithFormat:@"%@ %@ %@", username, renamedAction, self.beacon.location];
 
 }
 
