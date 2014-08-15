@@ -22,4 +22,10 @@
 /** The user's email. */
 @property (readwrite) NSString* email;
 
+/** The user's device tokens. */
+@property (readwrite) NSArray* deviceTokens;
+
+/** Add a new device token */
+- (void)addDeviceToken:(NSString *)deviceToken;
+
 @end

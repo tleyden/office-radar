@@ -18,6 +18,7 @@ NSString *const kFieldId = @"_id";
 NSString *const kViewBeacons = @"beacons";
 NSString *const kDatabaseName = @"office_radar";
 NSString *const kLocalDocUserId = @"user_id";
+NSString *const kLocalDocDeviceToken = @"device_token";
 NSString *const kUserProfileDocType = @"profile";
 NSString *const kAuthSystemFacebook = @"facebook";
 NSString *const kViewGeofenceEvents = @"geofence_events";

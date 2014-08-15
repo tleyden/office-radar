@@ -4,6 +4,7 @@
 #import "RDConstants.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "RDDatabaseHelper.h"
+#import "RDUserHelper.h"
 
 @implementation RDAppDelegate
 
@@ -18,8 +19,32 @@
     [self initCouchbaseLiteDatabase];
     [self initOfficeRadarBeaconManager];
     [self initCouchbaseLiteReplications];
+    [self registerForPushNotifications];
     
     return YES;
+}
+
+- (void)application:(UIApplication *)app didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    
+    NSString *str = [NSString stringWithFormat:@"%@",deviceToken];
+    NSLog(@"didRegisterForRemoteNotificationsWithDeviceToken, Device token: %@", str);
+    
+    NSString* deviceTokenCleaned = [[[[deviceToken description]
+                                        stringByReplacingOccurrencesOfString: @"<" withString: @""]
+                                        stringByReplacingOccurrencesOfString: @">" withString: @""]
+                                        stringByReplacingOccurrencesOfString: @" " withString: @""];
+    
+    [[RDUserHelper sharedInstance] saveDeviceTokenLocalDoc:deviceTokenCleaned];
+    [[RDUserHelper sharedInstance] updateProfileWithDeviceToken:deviceTokenCleaned];
+    
+    
+}
+
+- (void)application:(UIApplication *)app didFailToRegisterForRemoteNotificationsWithError:(NSError *)err
+{
+    NSString *str = [NSString stringWithFormat: @"Error: %@", err];
+    NSLog(@"%@", str);
 }
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
@@ -33,6 +58,24 @@
         [alert show];
     }
     
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    
+    NSString *msg = [[[userInfo objectForKey:@"aps"] objectForKey:@"alert"] objectForKey:@"body"];
+    if (msg == nil) {
+        msg = @"Error";
+    }
+    UIApplicationState state = [application applicationState];
+    if (state == UIApplicationStateActive) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"OfficeRadar"
+                                                        message:msg
+                                                       delegate:self cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -61,6 +104,8 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
 
 // Needed for facebook login 
 - (BOOL)application:(UIApplication *)application
@@ -118,6 +163,17 @@
                                                object:pushReplication];
 }
 
+- (void)registerForPushNotifications {
+    
+    NSLog(@"registerForPushNotifications");
+
+    [[UIApplication sharedApplication]
+     registerForRemoteNotificationTypes:
+     (UIRemoteNotificationTypeAlert |
+      UIRemoteNotificationTypeBadge |
+      UIRemoteNotificationTypeSound)];
+
+}
 
 
 -(void)replicationProgress:(NSNotification *)notification {

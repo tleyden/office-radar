@@ -19,6 +19,7 @@ extern NSString *const kFieldId;
 extern NSString *const kViewBeacons;
 extern NSString *const kDatabaseName;
 extern NSString *const kLocalDocUserId;
+extern NSString *const kLocalDocDeviceToken;
 extern NSString *const kUserProfileDocType;
 extern NSString *const kAuthSystemFacebook;
 extern NSString *const kViewGeofenceEvents;

@@ -25,5 +25,11 @@
 /* Is the logged in user an admin? */
 - (BOOL)isAdminLoggedIn;
 
+/* Save the device token in a local doc */
+- (void)saveDeviceTokenLocalDoc:(NSString *)deviceToken;
+
+/* Update user profile to add device token */
+- (void)updateProfileWithDeviceToken:(NSString *)deviceToken;
+
 
 @end

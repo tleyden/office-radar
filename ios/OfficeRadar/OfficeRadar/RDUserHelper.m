@@ -21,6 +21,8 @@
 
 - (void)facebookUserLoggedIn:(id<FBGraphUser>)user {
     
+    NSLog(@"facebookUserLoggedIn");
+    
     NSError *error;
 
     // get database
@@ -30,17 +32,51 @@
     NSString *userId = [user objectID];
     NSDictionary *localDoc = @{kLocalDocUserId: userId};
     [database putLocalDocument:localDoc withID:kLocalDocUserId error:&error];
-    [self showAlertIfError:error withMessage:@"Unable to save local doc"];
+    if ([self showAlertIfError:error withMessage:@"Unable to save local doc"]) {
+        return;
+    }
     
     // save new user profile, or update existing
     CBLDocument *userProfileDoc = [database documentWithID:userId];
     RDUserProfile *userProfile = [RDUserProfile modelForDocument:userProfileDoc];
     [userProfile setName:[user name]];
     [userProfile setAuthSystem:kAuthSystemFacebook];
+    
+    // this might be a no-op, if the device token hasn't been saved to local doc yet.
+    [userProfile addDeviceToken:[self getDeviceTokenLocalDoc]];
+    
     [userProfile save:&error];
-    [self showAlertIfError:error withMessage:@"Unable to save user profile"];
+    if ([self showAlertIfError:error withMessage:@"Unable to save user profile"]) {
+        return;
+    }
     
+}
+
+- (void)updateProfileWithDeviceToken:(NSString *)deviceToken {
     
+    NSError *error;
+    
+    NSLog(@"updateProfileWithDeviceToken called with %@", deviceToken);
+    
+    NSString *userId = [self loggedInUserId];
+    if (userId == nil) {
+        NSLog(@"loggedInUserId is null, abort updateProfileWithDeviceToken");
+        return;
+    }
+    CBLDocument *userProfileDoc = [[RDDatabaseHelper database] documentWithID:userId];
+    RDUserProfile *userProfile = [RDUserProfile modelForDocument:userProfileDoc];
+
+    // this might be a no-op, if the device token hasn't been saved to local doc yet.
+    [userProfile addDeviceToken:deviceToken];
+    
+    [userProfile save:&error];
+    if ([self showAlertIfError:error withMessage:@"Unable to update user profile with deviceToken"]) {
+        return;
+    }
+    
+    NSLog(@"saved user profile (userid = %@) with device token", userId);
+
+
 }
 
 - (void)facebookUserLoggedOut {
@@ -73,6 +109,30 @@
     
 }
 
+- (void)saveDeviceTokenLocalDoc:(NSString *)deviceToken {
+    
+    NSLog(@"saveDeviceTokenLocalDoc, Device token: %@", deviceToken);
+
+    NSError *error;
+    NSDictionary *localDoc = @{kLocalDocDeviceToken: deviceToken};
+    [[RDDatabaseHelper database] putLocalDocument:localDoc withID:kLocalDocDeviceToken error:&error];
+    if ([self showAlertIfError:error withMessage:@"Unable to save local doc"]) {
+        return;
+    }
+    
+}
+
+
+- (NSString *)getDeviceTokenLocalDoc {
+    // find user id from local doc
+    NSDictionary *localDoc = [[RDDatabaseHelper database] existingLocalDocumentWithID:kLocalDocDeviceToken];
+    if (localDoc == nil) {
+        return nil;
+    }
+    return (NSString *) [localDoc objectForKey:kLocalDocDeviceToken];
+    
+}
+
 - (RDUserProfile *)loggedInUserProfile {
     NSString *userId = [self loggedInUserId];
     if (userId == nil) {
@@ -100,15 +160,16 @@
 }
 
 // TODO: this method is duplicated, refactoring needed
-- (void)showAlertIfError:(NSError *)error withMessage:(NSString *)message {
+- (BOOL)showAlertIfError:(NSError *)error withMessage:(NSString *)message {
     if (error != nil) {
         [[[UIAlertView alloc] initWithTitle:@"Error"
                                     message:message
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil] show];
+        return YES;
     }
-    
+    return NO;
 }
 
 @end
