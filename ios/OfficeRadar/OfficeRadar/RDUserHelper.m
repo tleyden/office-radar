@@ -41,6 +41,7 @@
     RDUserProfile *userProfile = [RDUserProfile modelForDocument:userProfileDoc];
     [userProfile setName:[user name]];
     [userProfile setAuthSystem:kAuthSystemFacebook];
+    [userProfile setValue: [[RDUserProfile class] docType] ofProperty: @"type"];
     
     // this might be a no-op, if the device token hasn't been saved to local doc yet.
     [userProfile addDeviceToken:[self getDeviceTokenLocalDoc]];
