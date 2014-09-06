@@ -18,8 +18,9 @@
     }
     [self initCouchbaseLiteDatabase];
     [self initOfficeRadarBeaconManager];
-    [self initCouchbaseLiteReplications];
     [self registerForPushNotifications];
+
+    // NOTE: replications will be initialized after facebook login
     
     return YES;
 }
@@ -37,7 +38,6 @@
     
     [[RDUserHelper sharedInstance] saveDeviceTokenLocalDoc:deviceTokenCleaned];
     [[RDUserHelper sharedInstance] updateProfileWithDeviceToken:deviceTokenCleaned];
-    
     
 }
 
@@ -141,28 +141,6 @@
 
 }
 
-- (void)initCouchbaseLiteReplications {
-    NSURL *syncUrl = [NSURL URLWithString:kSyncURL];
-    CBLReplication *pullReplication = [[self database] createPullReplication:syncUrl];
-    CBLReplication *pushReplication = [[self database] createPushReplication:syncUrl];
-    
-    [pullReplication setContinuous:YES];
-    [pushReplication setContinuous:YES];
-    
-    [pullReplication start];
-    [pushReplication start];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(replicationProgress:)
-                                                 name:kCBLReplicationChangeNotification
-                                               object:pullReplication];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(replicationProgress:)
-                                                 name:kCBLReplicationChangeNotification
-                                               object:pushReplication];
-}
-
 - (void)registerForPushNotifications {
     
     NSLog(@"registerForPushNotifications");
@@ -176,41 +154,6 @@
 }
 
 
--(void)replicationProgress:(NSNotification *)notification {
-
-    CBLReplication *repl = [notification object];
-    [self replicationProgress:repl notification:notification];
-    
-}
-
-
--(void)replicationProgress:(CBLReplication *)repl notification:(NSNotification *)notification {
-    bool active = false;
-    unsigned completed = 0, total = 0;
-    CBLReplicationStatus status = kCBLReplicationStopped;
-    NSError *error = nil;
-    status = MAX(status, repl.status);
-    if (!error)
-        error = repl.lastError;
-    if (repl.status == kCBLReplicationActive) {
-        active = true;
-        completed += repl.completedChangesCount;
-        total += repl.changesCount;
-    }
-    
-    if (error.code == 401) {
-        NSLog(@"401 auth error");
-    }
-    
-    if (repl.pull) {
-        NSLog(@"Pull: active=%d; status=%d; %u/%u; %@",
-              active, status, completed, total, error.localizedDescription);
-    } else {
-        NSLog(@"Push: active=%d; status=%d; %u/%u; %@",
-              active, status, completed, total, error.localizedDescription);
-    }
-    
-}
 
 
 

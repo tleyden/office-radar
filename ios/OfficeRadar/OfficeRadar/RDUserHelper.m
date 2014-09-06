@@ -5,6 +5,7 @@
 #import "RDConstants.h"
 #import "RDDatabaseHelper.h"
 #import "RDUserProfile.h"
+#import "RDSyncHelper.h"
 
 @implementation RDUserHelper
 
@@ -50,6 +51,9 @@
     if ([self showAlertIfError:error withMessage:@"Unable to save user profile"]) {
         return;
     }
+    
+    // kick off the replications
+    [[RDSyncHelper sharedInstance] startSyncWithExistingFacebookSession];
     
 }
 

@@ -45,7 +45,7 @@
                             user:(id<FBGraphUser>)user {
     
     [[RDUserHelper sharedInstance] facebookUserLoggedIn:user];
-
+    
 }
 
 
