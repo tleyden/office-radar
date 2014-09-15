@@ -18,3 +18,7 @@ Copy `CouchbaseLite.framework` into the OfficeRadar project as a sibling of the 
 ### Build
 
 Build the OfficeRadar XCode project
+
+## Architecture
+
+For the Push Notification functionality to work, this app depends on having [officeradar-appserver](https://github.com/tleyden/officeradar-appserver) running in the backend.
