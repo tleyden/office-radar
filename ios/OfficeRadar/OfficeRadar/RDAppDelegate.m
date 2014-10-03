@@ -146,6 +146,9 @@
     CBLReplication *pullReplication = [[self database] createPullReplication:syncUrl];
     CBLReplication *pushReplication = [[self database] createPushReplication:syncUrl];
     
+    // websockets disabled until https://github.com/couchbase/couchbase-lite-ios/issues/480 is fixed
+    pullReplication.customProperties = @{@"websocket": @NO};
+    
     [pullReplication setContinuous:YES];
     [pushReplication setContinuous:YES];
     
