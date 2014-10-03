@@ -10,29 +10,29 @@
 	<string>OfficeRadar</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>B7028451-C5AC-4977-855E-B4BEC3ED35A3</key>
+		<key>E079BC4B5242D7F4891DE4F32080693ADD19106A</key>
 		<string>https://github.com/tleyden/office-radar.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ios/OfficeRadar/OfficeRadar.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>B7028451-C5AC-4977-855E-B4BEC3ED35A3</key>
+		<key>E079BC4B5242D7F4891DE4F32080693ADD19106A</key>
 		<string>../../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/tleyden/office-radar.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>B7028451-C5AC-4977-855E-B4BEC3ED35A3</string>
+	<string>E079BC4B5242D7F4891DE4F32080693ADD19106A</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>B7028451-C5AC-4977-855E-B4BEC3ED35A3</string>
+			<string>E079BC4B5242D7F4891DE4F32080693ADD19106A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>office-radar</string>
 		</dict>
