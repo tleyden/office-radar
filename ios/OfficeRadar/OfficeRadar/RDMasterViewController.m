@@ -48,7 +48,7 @@
 }
 
 - (CBLLiveQuery *) createLiveQuery {
-    CBLQuery* query = [[[RDDatabaseHelper database] viewNamed:kViewGeofenceEvents] createQuery];
+    CBLQuery* query = [[[RDDatabaseHelper database] viewNamed:kLastSeenUsers] createQuery];
     [query setDescending:YES];
     return [query asLiveQuery];
 }
@@ -77,9 +77,11 @@
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
     CBLDocument *document = [source documentAtIndexPath:indexPath];
 
-    RDGeofenceEvent *geofenceEvent = [RDGeofenceEvent modelForDocument:document];
     
-    cell.textLabel.text = [geofenceEvent prettyPrint];
+    cell.textLabel.text = [[document properties] valueForKey:@"name"];
+
+    /*
+    RDGeofenceEvent *geofenceEvent = [RDGeofenceEvent modelForDocument:document];
 
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateStyle:NSDateFormatterShortStyle];
@@ -87,6 +89,7 @@
     NSString *dateString = [dateFormat stringFromDate:geofenceEvent.created_at];
     
     cell.detailTextLabel.text = dateString;
+*/
     
     return cell;
 

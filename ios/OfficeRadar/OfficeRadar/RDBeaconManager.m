@@ -63,6 +63,14 @@
             emit(key, doc[@"_id"]);
         }
     } version:@"7"];
+    
+    CBLView* lastSeenUsersView = [[self database] viewNamed: kLastSeenUsers];
+    [lastSeenUsersView setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
+        NSString *docType = (NSString *) doc[kDocType];
+        if ([docType isEqualToString:kUserProfileDocType]) {
+            emit(doc[@"name"], doc[@"_id"]);
+        }
+    } version:@"1"];
 
     
 }

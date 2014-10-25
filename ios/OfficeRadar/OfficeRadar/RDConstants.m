@@ -4,7 +4,7 @@
 
 @implementation RDConstants
 
-NSString *const kSyncURL = @"http://demo.sc.couchbase.com/officeradar";
+NSString *const kSyncURL = @"http://demo.mobile.couchbase.com/officeradar";
 
 NSString *const kDocType = @"type";
 NSString *const kDocTypeBeacon = @"beacon";
@@ -23,6 +23,7 @@ NSString *const kLocalDocDeviceToken = @"device_token";
 NSString *const kUserProfileDocType = @"profile";
 NSString *const kAuthSystemFacebook = @"facebook";
 NSString *const kViewGeofenceEvents = @"geofence_events";
+NSString *const kLastSeenUsers = @"last_seen_users";
 NSString *const kFieldCreatedAt = @"created_at";
 
 

@@ -1,6 +1,8 @@
 
 #import <CouchbaseLite/CouchbaseLite.h>
 
+@class RDGeofenceEvent;
+
 /* Additional information of an OfficeRadar user */
 @interface RDUserProfile : CBLModel
 
@@ -24,6 +26,15 @@
 
 /** The user's device tokens. */
 @property (readwrite) NSArray* deviceTokens;
+
+/** The latest geofence event recorded by the user. */
+@property (readwrite) RDGeofenceEvent* latestEvent;
+
+/** 
+ When the latest geofence event for this user happened 
+ NOTE: see http://bit.ly/1D8Ug7T for discussion
+ */
+@property (readwrite) NSDate* latestEventCreatedAt;
 
 /** Add a new device token */
 - (void)addDeviceToken:(NSString *)deviceToken;

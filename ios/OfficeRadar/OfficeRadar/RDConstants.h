@@ -23,6 +23,7 @@ extern NSString *const kLocalDocDeviceToken;
 extern NSString *const kUserProfileDocType;
 extern NSString *const kAuthSystemFacebook;
 extern NSString *const kViewGeofenceEvents;
+extern NSString *const kLastSeenUsers;
 extern NSString *const kFieldCreatedAt;
 
 

@@ -3,10 +3,11 @@
 #import "RDUserProfile.h"
 #import "RDConstants.h"
 #import "RDDatabaseHelper.h"
+#import "RDGeofenceEvent.h"
 
 @implementation RDUserProfile
 
-@dynamic authSystem, name, photoUrl, email, deviceTokens;
+@dynamic authSystem, name, photoUrl, email, deviceTokens, latestEvent, latestEventCreatedAt;
 
 + (NSString*) docType {
     return kUserProfileDocType;
