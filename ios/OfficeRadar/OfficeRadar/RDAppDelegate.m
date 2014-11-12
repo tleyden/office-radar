@@ -213,8 +213,44 @@
               active, status, completed, total, error.localizedDescription);
     }
     
+    if (repl.pull && repl.status == kCBLReplicationIdle) {
+        NSLog(@"Replication is idle");
+        // [self dumpDatabase];
+    }
+    
 }
 
+-(void)dumpDatabase {
+    CBLQuery *allDocsQuery = [[self database] createAllDocumentsQuery];
+    NSError *error;
+    
+    NSMutableArray *sequences = [NSMutableArray array];
+    CBLQueryEnumerator *enumerator = [allDocsQuery run:&error];
+    for (CBLQueryRow *row in enumerator) {
+        NSLog(@"Seq: %lld Id: %@", [row sequenceNumber], [row documentID]);
+        NSNumber *seqNumber = [NSNumber numberWithUnsignedLongLong:[row sequenceNumber]];
+        [sequences addObject:seqNumber];
+    }
+    
+    
+    [sequences sortUsingSelector:@selector(compare:)];
+    
+    long lastSeq = 0;
+    for (NSNumber *object in sequences) {
+        if ([object longValue] != (lastSeq + 1)) {
+            // NSLog(@"Non-contiguous: %ld", [object longValue]);
+        }
+        lastSeq = [object longValue];
+        // NSLog(@"%@", object);
+    }
+    
+
+}
+
+UInt64 compare(const void *first, const void *second)
+{
+    return *(const UInt64 *)first - *(const UInt64 *)second;
+}
 
 
 

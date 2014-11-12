@@ -41,6 +41,7 @@
 		158FBC5D195E28BB00A218EE /* libEstimoteSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC5C195E28BB00A218EE /* libEstimoteSDK.a */; };
 		158FBC5F195E28C500A218EE /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC5E195E28C500A218EE /* CoreBluetooth.framework */; };
 		158FBC61195E28CC00A218EE /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 158FBC60195E28CC00A218EE /* CoreLocation.framework */; };
+		1599AB971A141EAE007B5A1F /* RDUiHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1599AB961A141EAE007B5A1F /* RDUiHelper.m */; };
 		15B61D91196603B100F9E0CB /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15B61D90196603B100F9E0CB /* libc++.dylib */; };
 /* End PBXBuildFile section */
 
@@ -103,6 +104,8 @@
 		158FBC5C195E28BB00A218EE /* libEstimoteSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libEstimoteSDK.a; path = EstimoteSDK/libEstimoteSDK.a; sourceTree = "<group>"; };
 		158FBC5E195E28C500A218EE /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		158FBC60195E28CC00A218EE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		1599AB951A141EAE007B5A1F /* RDUiHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RDUiHelper.h; sourceTree = "<group>"; };
+		1599AB961A141EAE007B5A1F /* RDUiHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RDUiHelper.m; sourceTree = "<group>"; };
 		15B61D90196603B100F9E0CB /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -209,6 +212,8 @@
 				15511942195F9AB0007C9A54 /* RDUserHelper.m */,
 				155119471961B555007C9A54 /* RDDatabaseHelper.h */,
 				155119481961B555007C9A54 /* RDDatabaseHelper.m */,
+				1599AB951A141EAE007B5A1F /* RDUiHelper.h */,
+				1599AB961A141EAE007B5A1F /* RDUiHelper.m */,
 				158FBC2C195E0BB000A218EE /* Images.xcassets */,
 				158FBC15195E0BB000A218EE /* Supporting Files */,
 			);
@@ -353,6 +358,7 @@
 				156C5D00195F28CA009D0C58 /* RDGeofenceEvent.m in Sources */,
 				156C5D03195F2B78009D0C58 /* RDBeacon.m in Sources */,
 				15511940195F8E78007C9A54 /* RDLoginViewController.m in Sources */,
+				1599AB971A141EAE007B5A1F /* RDUiHelper.m in Sources */,
 				158FBC1F195E0BB000A218EE /* RDAppDelegate.m in Sources */,
 				155119491961B555007C9A54 /* RDDatabaseHelper.m in Sources */,
 				158FBC1B195E0BB000A218EE /* main.m in Sources */,

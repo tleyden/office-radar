@@ -7,6 +7,7 @@
 #import "RDUserHelper.h"
 #import <CouchbaseLite/CouchbaseLite.h>
 #import "RDUserProfile.h"
+#import "RDUiHelper.h"
 
 @implementation RDBeaconManager
 
@@ -68,9 +69,10 @@
     [lastSeenUsersView setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
         NSString *docType = (NSString *) doc[kDocType];
         if ([docType isEqualToString:kUserProfileDocType]) {
-            emit(doc[@"name"], doc[@"_id"]);
+            NSArray *compoundKey = @[doc[@"latestEventCreatedAt"], doc[@"name"]];
+            emit(compoundKey, doc[@"_id"]);
         }
-    } version:@"1"];
+    } version:@"2"];
 
     
 }
@@ -141,18 +143,29 @@
                                                                   withBeacon:beacon
                                                                      profile:profile
                                                                       action:action];
-
+    
     NSError *error;
     BOOL saved = [geofenceEvent save:&error];
-    
-    CBLDocument *document = [geofenceEvent document];
-    NSLog(@"saveGeofenceForBeacon: %@", [document properties]);
-    
     if (!saved) {
-        UILocalNotification *notification = [UILocalNotification new];
-        notification.alertBody = @"OfficeRadar: failed to save geofence event";
-        [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
+        [RDUiHelper showLocalNotificationError:@"OfficeRadar: failed to save geofence event" error:error];
+        return;
     }
+    
+    NSLog(@"Saved geofence event: %@", [geofenceEvent prettyPrint]);
+    
+    // update profile
+    [profile setLatestEvent:geofenceEvent];
+    [profile setLatestEventCreatedAt:[geofenceEvent created_at]];
+    saved = [profile save:&error];
+    if (!saved) {
+        [RDUiHelper showLocalNotificationError:@"OfficeRadar: failed to update profile with latest event" error:error];
+        return;
+    }
+        
+    // TODO: this should only happen if enabled in settings
+    UILocalNotification *notification = [UILocalNotification new];
+    notification.alertBody = [geofenceEvent prettyPrint];
+    [[UIApplication sharedApplication] presentLocalNotificationNow:notification];
     
 }
 

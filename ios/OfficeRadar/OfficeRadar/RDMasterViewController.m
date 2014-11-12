@@ -75,21 +75,16 @@
                 cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-    CBLDocument *document = [source documentAtIndexPath:indexPath];
-
+    CBLQueryRow *row = [source rowAtIndexPath:indexPath];
+    id lastSeenAt = [row key0];
+    id name = [row key1];
     
-    cell.textLabel.text = [[document properties] valueForKey:@"name"];
 
-    /*
-    RDGeofenceEvent *geofenceEvent = [RDGeofenceEvent modelForDocument:document];
-
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateStyle:NSDateFormatterShortStyle];
-    [dateFormat setTimeStyle:NSDateFormatterShortStyle];
-    NSString *dateString = [dateFormat stringFromDate:geofenceEvent.created_at];
+    RDUserProfile *profile = [RDUserProfile modelForDocument:[row document]];
+    NSString *location = [[[profile latestEvent] beacon] location];
     
-    cell.detailTextLabel.text = dateString;
-*/
+    cell.textLabel.text = name;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ (%@)", lastSeenAt, location];
     
     return cell;
 
