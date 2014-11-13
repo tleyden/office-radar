@@ -69,10 +69,14 @@
     [lastSeenUsersView setMapBlock:^(NSDictionary *doc, CBLMapEmitBlock emit) {
         NSString *docType = (NSString *) doc[kDocType];
         if ([docType isEqualToString:kUserProfileDocType]) {
-            NSArray *compoundKey = @[doc[@"latestEventCreatedAt"], doc[@"name"]];
-            emit(compoundKey, doc[@"_id"]);
+            id latestEventCreatedAt = doc[@"latestEventCreatedAt"];
+            if (latestEventCreatedAt != nil) {
+                NSArray *compoundKey = @[latestEventCreatedAt, doc[@"name"]];
+                emit(compoundKey, doc[@"_id"]);
+
+            }
         }
-    } version:@"2"];
+    } version:@"3"];
 
     
 }
