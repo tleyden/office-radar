@@ -10,13 +10,17 @@
 	<string>OfficeRadar</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
+		<key>3CEAD9F91B3766ACE67A4DD0BCC0B35360438D86</key>
+		<string>https://github.com/couchbaselabs/ToDoLite-iOS.git</string>
 		<key>E079BC4B5242D7F4891DE4F32080693ADD19106A</key>
 		<string>https://github.com/tleyden/office-radar.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ios/OfficeRadar/OfficeRadar.xcodeproj/project.xcworkspace</string>
+	<string>ios/OfficeRadar/OfficeRadar.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
+		<key>3CEAD9F91B3766ACE67A4DD0BCC0B35360438D86</key>
+		<string>../../../../../ToDoLite-iOS</string>
 		<key>E079BC4B5242D7F4891DE4F32080693ADD19106A</key>
 		<string>../../../..</string>
 	</dict>
@@ -35,6 +39,14 @@
 			<string>E079BC4B5242D7F4891DE4F32080693ADD19106A</string>
 			<key>IDESourceControlWCCName</key>
 			<string>office-radar</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>3CEAD9F91B3766ACE67A4DD0BCC0B35360438D86</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ToDoLite-iOS</string>
 		</dict>
 	</array>
 </dict>

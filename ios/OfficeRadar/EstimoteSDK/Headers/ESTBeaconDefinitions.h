@@ -2,13 +2,13 @@
 //  ESTBeaconDefinitions.h
 //  EstimoteSDK
 //
-//  Version : 2.0.0
+//  Version: 2.3.2
 //  Created by Marcin Klimek on 9/26/13.
 //  Copyright (c) 2013 Estimote. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
-#import "ESTBeaconFirmwareInfoVO.h"
+#import "ESTDefinitions.h"
 
 #define ESTIMOTE_PROXIMITY_UUID             [[NSUUID alloc] initWithUUIDString:@"B9407F30-F5F8-466E-AFF9-25556B57FE6D"]
 #define ESTIMOTE_MACBEACON_PROXIMITY_UUID   [[NSUUID alloc] initWithUUIDString:@"08D4A950-80F0-4D42-A14B-D53E063516E6"]
@@ -20,7 +20,7 @@
 // Type and class definitions
 
 
-typedef enum : char
+typedef NS_ENUM(char, ESTBeaconPower)
 {
     ESTBeaconPowerLevel1 = -30,
     ESTBeaconPowerLevel2 = -20,
@@ -30,36 +30,23 @@ typedef enum : char
     ESTBeaconPowerLevel6 = -4,
     ESTBeaconPowerLevel7 = 0,
     ESTBeaconPowerLevel8 = 4
-} ESTBeaconPower;
+};
 
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconBatteryType)
 {
     ESTBeaconBatteryTypeUnknown = 0,
     ESTBeaconBatteryTypeCR2450,
     ESTBeaconBatteryTypeCR2477
-} ESTBeaconBatteryType;
+};
 
 
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconFirmwareState)
 {
     ESTBeaconFirmwareStateBoot,
     ESTBeaconFirmwareStateApp
-} ESTBeaconFirmwareState;
+};
 
-typedef enum : int
-{
-    ESTEventEnterRegion,
-    ESTEventExitRegion
-} ESTEvent;
-
-typedef enum : int
-{
-    ESTProximityImmediate,
-	ESTProximityNear,
-	ESTProximityFar
-} ESTProximity;
-
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconColor)
 {
     ESTBeaconColorUnknown = 0,
     ESTBeaconColorMint = 1,
@@ -67,34 +54,31 @@ typedef enum : int
     ESTBeaconColorBlueberry,
     ESTBeaconColorWhite,
     ESTBeaconColorTransparent
-} ESTBeaconColor;
+};
 
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconPowerSavingMode)
 {
-    ESTBeaconFirmwareUpdateNone,
-    ESTBeaconFirmwareUpdateAvailable,
-    ESTBeaconFirmwareUpdateNotAvailable
-} ESTBeaconFirmwareUpdate;
+    ESTBeaconPowerSavingModeUnknown,
+    ESTBeaconPowerSavingModeOn,
+    ESTBeaconPowerSavingModeOff,
+    ESTBeaconPowerSavingModeNotAvailable
+};
 
-typedef enum : int
+typedef NS_ENUM(int, ESTBeaconEstimoteSecureUUID)
 {
-    ESTBeaconConnectionStatusConnecting,
-	ESTBeaconConnectionStatusConnected,
-	ESTBeaconConnectionStatusDisconnected
-} ESTBeaconConnectionStatus;
+    ESTBeaconEstimoteSecureUUIDUnknown,
+    ESTBeaconEstimoteSecureUUIDOn,
+    ESTBeaconEstimoteSecureUUIDOff,
+    ESTBeaconEstimoteSecureUUIDNotAvailable
+};
 
-typedef void(^ESTCompletionBlock)(NSError* error);
-typedef void(^ESTObjectCompletionBlock)(id result, NSError* error);
-typedef void(^ESTDataCompletionBlock)(NSData* result, NSError* error);
-typedef void(^ESTNumberCompletionBlock)(NSNumber* value, NSError* error);
-typedef void(^ESTUnsignedShortCompletionBlock)(unsigned short value, NSError* error);
+typedef NS_ENUM(int, ESTBeaconCharInfoType)
+{
+    ESTBeaconCharInfoTypeWriteRead,
+    ESTBeaconCharInfoTypeWriteOnly
+};
+
 typedef void(^ESTPowerCompletionBlock)(ESTBeaconPower value, NSError* error);
-typedef void(^ESTBoolCompletionBlock)(BOOL value, NSError* error);
-typedef void(^ESTStringCompletionBlock)(NSString* value, NSError* error);
-typedef void(^ESTProgressBlock)(NSInteger value, NSString* description, NSError* error);
-typedef void(^ESTArrayCompletionBlock)(NSArray* value, NSError* error);
-typedef void(^ESTFirmwareInfoCompletionBlock)(ESTBeaconFirmwareInfoVO *result, NSError* error);
-typedef void(^ESTCsRegisterCompletonBlock)(NSError* error);
 
 ////////////////////////////////////////////////////////////////////
 // Interface definition
